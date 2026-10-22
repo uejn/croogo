@@ -1,0 +1,55 @@
+name: tests
+
+on:
+  push:
+    branches: ['2.x']
+  pull_request:
+
+jobs:
+  php82:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: croogo_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: intl, pdo_mysql, mbstring, gd, zip
+          ini-values: error_reporting=-1, display_errors=On
+          # Composer 2.2: los nuevos no instalan cakephp/cakephp 2.x por los avisos de Packagist
+          tools: composer:2.2
+
+      - name: Lint (PHP 8.2)
+        run: |
+          if git ls-files '*.php' '*.ctp' | xargs -n50 -P4 php -l 2>&1 | grep -v '^No syntax errors'; then
+            exit 1
+          fi
+
+      - name: Armar el esqueleto
+        run: .github/ci/tests.sh preparar
+        env:
+          # Sin token, composer se queda sin cupo de la API y prueba clonar por SSH
+          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.GITHUB_TOKEN }}"}}'
+
+      - name: Tests, contra la línea base
+        run: .github/ci/tests.sh
+
+      - name: Salidas de los tests
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: salidas
+          path: app/tmp/tests
