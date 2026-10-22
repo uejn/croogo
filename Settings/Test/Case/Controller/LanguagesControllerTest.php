@@ -42,7 +42,6 @@ class LanguagesControllerTest extends CroogoControllerTestCase {
 				'redirect',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 			),
 		));

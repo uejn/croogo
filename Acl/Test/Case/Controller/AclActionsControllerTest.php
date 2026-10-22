@@ -35,7 +35,6 @@ class AclActionsControllerTest extends CroogoControllerTestCase {
 				'redirect',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 				'Menus.Menus',
 				'Blocks.Blocks',

@@ -32,6 +32,12 @@ class MenusComponentTest extends CroogoControllerTestCase {
 		'plugin.blocks.region',
 		'plugin.menus.menu',
 		'plugin.menus.link',
+		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
+		'plugin.users.aco',
+		'plugin.users.aro',
+		'plugin.users.aros_aco',
 	);
 
 	public function setUp(): void {

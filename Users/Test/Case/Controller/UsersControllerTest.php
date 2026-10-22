@@ -51,7 +51,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
 				'onAdminLoginFailure',
 			),
 			'components' => array(
-				'Auth' => array('user', 'identify', 'login'),
+				'Auth' => array('identify', 'login'),
 				'Session',
 				'Security',
 			),

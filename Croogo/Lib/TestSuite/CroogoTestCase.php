@@ -25,6 +25,12 @@ class CroogoTestCase extends CakeTestCase {
 	public $setupSettings = true;
 
 /**
+ * Fixtures del test. Declarada acá para los tests que no usan ninguna: el constructor le suma
+ * la de settings.
+ */
+	public $fixtures = array();
+
+/**
  * setupSettings() lee y escribe la tabla settings: si el test la usa, declara su fixture.
  * Antes andaba sin declararlo porque la suite entera corría en un proceso y algún test
  * anterior la había dejado creada.

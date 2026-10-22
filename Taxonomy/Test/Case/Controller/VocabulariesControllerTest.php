@@ -51,7 +51,6 @@ class VocabulariesControllerTest extends CroogoControllerTestCase {
 				'redirect',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 			),
 		));

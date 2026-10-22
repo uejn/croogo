@@ -80,7 +80,6 @@ class NodesControllerTest extends CroogoControllerTestCase {
 				'is',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session' => array('read', 'setFlash'),
 				'Security' => array('blackHole'),
 			),

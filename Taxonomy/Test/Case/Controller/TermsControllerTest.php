@@ -45,7 +45,6 @@ class TermsControllerTest extends CroogoControllerTestCase {
 				'redirect',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 				'Menus.Menus',
 			),

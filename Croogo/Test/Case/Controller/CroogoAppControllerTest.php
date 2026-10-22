@@ -80,15 +80,23 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 		$filePath = App::themePath($theme) . 'TestApp'. DS . 'admin_edit.ctp';
 
 		$expected = '<h1>I should be displayed</h1>';
+		// La vista está versionada: se pisa para el test y se devuelve como estaba.
+		$original = file_exists($filePath) ? file_get_contents($filePath) : null;
 		$File = new File($filePath, true, 0777);
 		$File->write($expected);
 		$File->close();
 
-		$result = $this->testAction('/admin/test_app/edit', array(
-			'return' => 'contents',
-		));
-
-		$File->delete();
+		try {
+			$result = $this->testAction('/admin/test_app/edit', array(
+				'return' => 'contents',
+			));
+		} finally {
+			if ($original === null) {
+				$File->delete();
+			} else {
+				file_put_contents($filePath, $original);
+			}
+		}
 		$this->assertStringContainsString($expected, trim($result));
 	}
 

@@ -44,7 +44,6 @@ class ContactsControllerTest extends CroogoControllerTestCase {
 				'_send_email',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 			),
 		));
