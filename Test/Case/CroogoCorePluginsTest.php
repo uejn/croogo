@@ -26,7 +26,7 @@ class CroogoCorePluginsTest extends PHPUnit\Framework\TestSuite {
 			'Translate',
 			'Users',
 		);
-		if ((integer)Configure::read('debug') > 0) {
+		if ((int)Configure::read('debug') > 0) {
 			$plugins[] = 'Install';
 		}
 		foreach ($plugins as $plugin) {
