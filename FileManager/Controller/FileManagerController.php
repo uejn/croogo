@@ -114,8 +114,7 @@ class FileManagerController extends FileManagerAppController {
 		$this->set('title_for_layout', __d('croogo', 'File Manager'));
 
 		$path = realpath($path) . DS;
-		$regex = '/^' . preg_quote(realpath(APP), '/') . '/';
-		if (preg_match($regex, $path) == false) {
+		if (!$this->FileManager->isWithinPath(APP, $path)) {
 			$this->Session->setFlash(__d('croogo', 'Path %s is restricted', $path), 'flash', array('class' => 'error'));
 			$path = APP;
 		}
