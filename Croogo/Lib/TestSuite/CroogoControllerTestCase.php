@@ -41,6 +41,12 @@ class CroogoControllerTestCase extends ControllerTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
+		// En la consola no hay REQUEST_METHOD, y el SecurityComponent de uejn/cakephp valida
+		// todo lo que no sea GET, HEAD u OPTIONS: sin esto, cada pedido armado a mano era un POST.
+		if (!isset($_SERVER['REQUEST_METHOD'])) {
+			$_SERVER['REQUEST_METHOD'] = 'GET';
+		}
+
 		$appDir = CakePlugin::path('Croogo') . 'Test' . DS . 'test_app' . DS;
 
 		App::build(array(

@@ -507,7 +507,7 @@ class CroogoFormHelperTest extends CroogoTestCase {
 			),
 		));
 		$this->assertStringStartsWith('<div class="input radio">', $result);
-		$this->assertContains('class="super-radio-button"', $result);
+		$this->assertStringContainsString('class="super-radio-button"', $result);
 	}
 
 /**
@@ -519,7 +519,7 @@ class CroogoFormHelperTest extends CroogoTestCase {
 			'class' => 'super-checkbox-button',
 		));
 		$this->assertStringStartsWith('<div class="input checkbox">', $result);
-		$this->assertContains('class="super-checkbox-button"', $result);
+		$this->assertStringContainsString('class="super-checkbox-button"', $result);
 	}
 
 }

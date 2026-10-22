@@ -55,7 +55,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Paginator->next();
-		$this->assertContains('</li>', $result);
+		$this->assertStringContainsString('</li>', $result);
 	}
 
 	public function testFirst() {
@@ -72,7 +72,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Paginator->first();
-		$this->assertContains('</li>', $result);
+		$this->assertStringContainsString('</li>', $result);
 	}
 
 	public function testLast() {
@@ -89,7 +89,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Paginator->last();
-		$this->assertContains('</li>', $result);
+		$this->assertStringContainsString('</li>', $result);
 	}
 
 	public function testNumbersFewPages() {
@@ -103,9 +103,9 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 				'paramType' => 'named'
 		));
 		$result = $this->Paginator->numbers();
-		$this->assertContains('>1</a>', $result);
-		$this->assertContains('>2</a>', $result);
-		$this->assertContains('class="active">3</a>', $result);
+		$this->assertStringContainsString('>1</a>', $result);
+		$this->assertStringContainsString('>2</a>', $result);
+		$this->assertStringContainsString('class="active">3</a>', $result);
 	}
 
 	public function testNumbersManyPages() {
@@ -119,9 +119,9 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 				'paramType' => 'named'
 		));
 		$result = $this->Paginator->numbers();
-		$this->assertContains('>21</a>', $result);
-		$this->assertContains('>28</a>', $result);
-		$this->assertContains('class="active">25</a>', $result);
+		$this->assertStringContainsString('>21</a>', $result);
+		$this->assertStringContainsString('>28</a>', $result);
+		$this->assertStringContainsString('class="active">25</a>', $result);
 	}
 
 	public function testNumbersPageEqualsEnd() {
@@ -135,8 +135,8 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 				'paramType' => 'named'
 		));
 		$result = $this->Paginator->numbers();
-		$this->assertContains('>22</a>', $result);
-		$this->assertContains('class="active">30</a>', $result);
+		$this->assertStringContainsString('>22</a>', $result);
+		$this->assertStringContainsString('class="active">30</a>', $result);
 	}
 
 }

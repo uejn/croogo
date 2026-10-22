@@ -180,7 +180,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Croogo->adminTabs(true);
-		$this->assertContains('test-title', $result);
+		$this->assertStringContainsString('test-title', $result);
 	}
 
 /**
@@ -210,7 +210,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Croogo->adminTabs(true);
-		$this->assertContains($testData, $result);
+		$this->assertStringContainsString($testData, $result);
 		$this->assertContains('test-title', $result);
 	}
 
@@ -227,7 +227,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Croogo->adminBoxes('Title');
-		$this->assertContains("class='box'", $result);
+		$this->assertStringContainsString("class='box'", $result);
 	}
 
 	public function testAdminBoxesAlreadyPrinted() {
@@ -264,8 +264,8 @@ class CroogoHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Croogo->adminBoxes();
-		$this->assertContains('Title', $result);
-		$this->assertContains('Content', $result);
+		$this->assertStringContainsString('Title', $result);
+		$this->assertStringContainsString('Content', $result);
 	}
 
 	public function testSettingsInputCheckbox() {
@@ -273,7 +273,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$setting['Setting']['value'] = 0;
 		$setting['Setting']['description'] = 'A description';
 		$result = $this->Croogo->settingsInput($setting, 'MyLabel', 0);
-		$this->assertContains('type="checkbox"', $result);
+		$this->assertStringContainsString('type="checkbox"', $result);
 	}
 
 	public function testSettingsInputCheckboxChecked() {
@@ -281,8 +281,8 @@ class CroogoHelperTest extends CroogoTestCase {
 		$setting['Setting']['value'] = 1;
 		$setting['Setting']['description'] = 'A description';
 		$result = $this->Croogo->settingsInput($setting, 'MyLabel', 0);
-		$this->assertContains('type="checkbox"', $result);
-		$this->assertContains('checked="checked"', $result);
+		$this->assertStringContainsString('type="checkbox"', $result);
+		$this->assertStringContainsString('checked="checked"', $result);
 	}
 
 	public function testSettingsInputTextbox() {
@@ -290,7 +290,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$setting['Setting']['description'] = 'A description';
 		$setting['Setting']['value'] = 'Yes';
 		$result = $this->Croogo->settingsInput($setting, 'MyLabel', 0);
-		$this->assertContains('type="text"', $result);
+		$this->assertStringContainsString('type="text"', $result);
 	}
 
 	public function testSettingsInputTextarea() {
@@ -298,7 +298,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$setting['Setting']['description'] = 'A description';
 		$setting['Setting']['value'] = 'Yes';
 		$result = $this->Croogo->settingsInput($setting, 'MyLabel', 0);
-		$this->assertContains('</textarea>', $result);
+		$this->assertStringContainsString('</textarea>', $result);
 	}
 
 /**

@@ -62,8 +62,8 @@ class MenusHelperTest extends CroogoTestCase {
 			'threaded' => array(),
 		);
 		Croogo::dispatchEvent('Helper.Layout.beforeFilter', $this->View, array('content' => &$content));
-		$this->assertContains('menu-6', $content);
-		$this->assertContains('class="menu"', $content);
+		$this->assertStringContainsString('menu-6', $content);
+		$this->assertStringContainsString('class="menu"', $content);
 	}
 
 }

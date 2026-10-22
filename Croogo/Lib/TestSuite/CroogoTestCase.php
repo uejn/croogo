@@ -24,6 +24,22 @@ class CroogoTestCase extends CakeTestCase {
  */
 	public $setupSettings = true;
 
+/**
+ * setupSettings() lee y escribe la tabla settings: si el test la usa, declara su fixture.
+ * Antes andaba sin declararlo porque la suite entera corría en un proceso y algún test
+ * anterior la había dejado creada.
+ */
+	public function __construct($name = null, array $data = array(), $dataName = '') {
+		parent::__construct($name, $data, $dataName);
+		if ($this->setupSettings) {
+			$fixtures = (array)$this->fixtures;
+			if (!in_array('plugin.settings.setting', $fixtures)) {
+				$fixtures[] = 'plugin.settings.setting';
+			}
+			$this->fixtures = $fixtures;
+		}
+	}
+
 	public static function setUpBeforeClass(): void {
 		self::_restoreSettings();
 		Configure::write('Config.language', 'eng');
@@ -48,6 +64,12 @@ class CroogoTestCase extends CakeTestCase {
  */
 	public function setUp(): void {
 		parent::setUp();
+
+		// En la consola no hay REQUEST_METHOD, y el SecurityComponent de uejn/cakephp valida
+		// todo lo que no sea GET, HEAD u OPTIONS: sin esto, cada pedido armado a mano era un POST.
+		if (!isset($_SERVER['REQUEST_METHOD'])) {
+			$_SERVER['REQUEST_METHOD'] = 'GET';
+		}
 
 		$appDir = CakePlugin::path('Croogo') . 'Test' . DS . 'test_app' . DS;
 
