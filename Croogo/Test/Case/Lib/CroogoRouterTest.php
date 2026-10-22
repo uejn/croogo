@@ -14,7 +14,7 @@ class CroogoRouterTest extends CroogoTestCase {
 		'plugin.taxonomy.types_vocabulary',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		// This test case is only valid for 2.3.x series
 		$this->skipIf(version_compare(Configure::version(), '2.3.1', '<'));

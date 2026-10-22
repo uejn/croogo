@@ -20,7 +20,7 @@ class CroogoComposerTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		App::build(array(
 			'Plugin' => array(CakePlugin::path('Extensions') . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS),
@@ -37,7 +37,7 @@ class CroogoComposerTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		$path = CakePlugin::path('Extensions') . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS . 'Example';
 		$Folder = new Folder($path);
@@ -110,6 +110,6 @@ class CroogoComposerTest extends CroogoTestCase {
 \s+}
 }
 END;
-		$this->assertRegExp($expected, trim($result));
+		$this->assertMatchesRegularExpression($expected, trim($result));
 	}
 }

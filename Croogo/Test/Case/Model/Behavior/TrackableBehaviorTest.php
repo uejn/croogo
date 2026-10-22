@@ -25,7 +25,7 @@ class TrackableBehaviorTest extends CroogoTestCase {
 		'plugin.settings.setting',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->loadFixtures('Trackable');
 		$this->model = ClassRegistry::init(array(
@@ -36,7 +36,7 @@ class TrackableBehaviorTest extends CroogoTestCase {
 		$this->model->Behaviors->attach('Croogo.Trackable');
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		Configure::delete('Trackable.Auth');
 		CakeSession::delete('Auth.User');
 	}

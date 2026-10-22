@@ -22,7 +22,7 @@ class CroogoJsonReaderTest extends CroogoTestCase {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->CroogoJsonReader = $this->getMock('MockCroogoJsonReader',
 			null,
@@ -34,7 +34,7 @@ class CroogoJsonReaderTest extends CroogoTestCase {
 /**
  * tearDown
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		if (file_exists($this->testFile)) {
 			unlink($this->testFile);
 		}
@@ -114,7 +114,7 @@ class CroogoJsonReaderTest extends CroogoTestCase {
 \s+}
 }
 END;
-		$this->assertRegExp($expected, file_get_contents($this->testFile));
+		$this->assertMatchesRegularExpression($expected, file_get_contents($this->testFile));
 	}
 
 }

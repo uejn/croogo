@@ -32,13 +32,13 @@ class NodeTest extends CroogoTestCase {
 		'plugin.taxonomy.vocabulary',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Node = ClassRegistry::init('Nodes.Node');
 		$this->Node->Behaviors->unload('Acl');
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->Node);
 	}
@@ -368,7 +368,7 @@ class NodeTest extends CroogoTestCase {
  * testAddNodeWithInvalidNodeType
  */
 	public function testAddNodeWithInvalidNodeType() {
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		$data = array(
 			'title' => 'Test Content',
 			'slug' => 'test-content',
@@ -535,7 +535,7 @@ class NodeTest extends CroogoTestCase {
  * test processActionInvalidAction
  */
 	public function testProcessActionInvalidAction() {
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		$this->Node->processAction('avadakadavra', array(1, 2));
 	}
 
@@ -543,7 +543,7 @@ class NodeTest extends CroogoTestCase {
  * test processActionWithoutIds
  */
 	public function testProcessActionWithoutIds() {
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		$this->Node->processAction('delete', array());
 	}
 

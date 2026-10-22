@@ -27,7 +27,7 @@ class LayoutHelperTest extends CroogoTestCase {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->ComponentCollection = new ComponentCollection();
 
@@ -48,7 +48,7 @@ class LayoutHelperTest extends CroogoTestCase {
 /**
  * tearDown
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		Configure::write('App.encoding', $this->_appEncoding);
 		Configure::write('Asset', $this->_asset);
 		Configure::write('debug', $this->_debug);
@@ -60,17 +60,17 @@ class LayoutHelperTest extends CroogoTestCase {
  * testJs
  */
 	public function testJs() {
-		$this->assertContains('"basePath":"\/","params":{"plugin":null,"controller":"nodes","action":"index","named":[]', $f = $this->Layout->js());
+		$this->assertStringContainsString('"basePath":"\/","params":{"plugin":null,"controller":"nodes","action":"index","named":[]', $f = $this->Layout->js());
 
 		$this->Layout->params['locale'] = 'eng';
-		$this->assertContains('"basePath":"\/eng\/","params":{"plugin":null,"controller":"nodes","action":"index","named":[]', $this->Layout->js());
+		$this->assertStringContainsString('"basePath":"\/eng\/","params":{"plugin":null,"controller":"nodes","action":"index","named":[]', $this->Layout->js());
 		unset($this->Layout->params['locale']);
 
 		Configure::write('Js.my_var', '123');
-		$this->assertContains('"my_var":"123"', $this->Layout->js());
+		$this->assertStringContainsString('"my_var":"123"', $this->Layout->js());
 
 		Configure::write('Js.my_var2', '456');
-		$this->assertContains('"my_var":"123","my_var2":"456"', $this->Layout->js());
+		$this->assertStringContainsString('"my_var":"123","my_var2":"456"', $this->Layout->js());
 	}
 
 /**
@@ -178,7 +178,7 @@ class LayoutHelperTest extends CroogoTestCase {
 			'options' => array(),
 		);
 		$result = $this->Layout->displayField($rows[0], 'User', 'status', $options);
-		$this->assertContains('icon-ok', $result);
+		$this->assertStringContainsString('icon-ok', $result);
 
 		$expected = '<a href="/users/view/1">admin</a>';
 		$options = array(

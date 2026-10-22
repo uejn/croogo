@@ -30,13 +30,13 @@ class SettingTest extends CroogoTestCase {
 		'plugin.taxonomy.vocabulary',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Setting = ClassRegistry::init('Settings.Setting');
 		$this->Setting->settingsPath = TESTS . 'test_app' . DS . 'Config' . DS . 'settings.json';
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->Setting);
 	}

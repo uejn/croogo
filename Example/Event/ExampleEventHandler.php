@@ -12,7 +12,7 @@ App::uses('CakeEventListener', 'Event');
  * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
  * @link     http://www.croogo.org
  */
-class ExampleEventHandler extends Object implements CakeEventListener {
+class ExampleEventHandler extends CakeObject implements CakeEventListener {
 
 /**
  * implementedEvents

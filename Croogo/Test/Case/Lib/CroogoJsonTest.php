@@ -31,7 +31,7 @@ class CroogoJsonTest extends CroogoTestCase {
 }
 END;
 		$result = CroogoJson::stringify($data, $options);
-		$this->assertRegExp($expected, $result);
+		$this->assertMatchesRegularExpression($expected, $result);
 
 		$data = array(
 			'name' => 'rchavik/sites',
@@ -67,7 +67,7 @@ END;
 }
 END;
 		$result = CroogoJson::stringify($data, $options);
-		$this->assertRegExp($expected, $result);
+		$this->assertMatchesRegularExpression($expected, $result);
 	}
 
 }

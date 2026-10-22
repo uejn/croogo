@@ -1,6 +1,6 @@
 <?php
 
-class AllAclComponentsTest extends PHPUnit_Framework_TestSuite {
+class AllAclComponentsTest extends PHPUnit\Framework\TestSuite {
 
 	public static function suite() {
 		$suite = new CakeTestSuite('All Acl component class tests');

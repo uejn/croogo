@@ -20,7 +20,7 @@ class OrderedBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->OrderRecord = ClassRegistry::init('OrderRecord');
 		$this->OrderRecord->Behaviors->attach('Ordered', array('field' => 'weight', 'foreign_key' => null));
@@ -33,7 +33,7 @@ class OrderedBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->OrderRecord);
 		ClassRegistry::flush();

@@ -36,7 +36,7 @@ class ContactsControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->ContactsController = $this->generate('Contacts.Contacts', array(
 			'methods' => array(
@@ -44,15 +44,11 @@ class ContactsControllerTest extends CroogoControllerTestCase {
 				'_send_email',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 			),
 		));
 		$this->controller->plugin = 'Contacts';
-		$this->controller->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 /**
@@ -60,7 +56,7 @@ class ContactsControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->ContactsController);
 	}

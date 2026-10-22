@@ -43,7 +43,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->UsersController = $this->generate('Users.Users', array(
 			'methods' => array(
@@ -51,7 +51,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
 				'onAdminLoginFailure',
 			),
 			'components' => array(
-				'Auth' => array('user', 'identify', 'login'),
+				'Auth' => array('identify', 'login'),
 				'Session',
 				'Security',
 			),
@@ -63,16 +63,13 @@ class UsersControllerTest extends CroogoControllerTestCase {
 		);
 
 		$this->controller->Auth
-			->staticExpects($this->any())
+			->expects($this->any())
 			->method('identify')
 			->will($this->returnCallback(array($this, 'authIdentifyFalse')));
 	}
 
 	protected function _setupAuthUser() {
-		$this->controller->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 	public function authIdentifyFalse() {
@@ -88,7 +85,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->UsersController);
 	}
@@ -146,7 +143,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
 			),
 		));
 		$errors = print_r($this->UsersController->User->validationErrors, true);
-		$this->assertContains('at least 6 characters', $errors);
+		$this->assertStringContainsString('at least 6 characters', $errors);
 	}
 
 /**
@@ -179,7 +176,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
 			),
 		));
 		$errors = print_r($this->UsersController->User->validationErrors, true);
-		$this->assertContains('do not match', $errors);
+		$this->assertStringContainsString('do not match', $errors);
 		$this->assertContains('valid email', $errors);
 		$this->assertContains('been taken', $errors);
 	}
@@ -266,7 +263,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
 			),
 			'return' => 'view',
 		));
-		$this->assertContains('Passwords must be at least 6 characters long.', $result);
+		$this->assertStringContainsString('Passwords must be at least 6 characters long.', $result);
 	}
 
 /**

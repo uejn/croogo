@@ -37,7 +37,7 @@ class UrlBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Node = ClassRegistry::init('Nodes.Node');
 	}
@@ -47,7 +47,7 @@ class UrlBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->Node);
 		ClassRegistry::flush();

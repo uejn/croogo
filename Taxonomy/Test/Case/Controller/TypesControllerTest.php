@@ -35,21 +35,17 @@ class TypesControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->TypesController = $this->generate('Taxonomy.Types', array(
 			'methods' => array(
 				'redirect',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 			),
 		));
-		$this->TypesController->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 /**
@@ -57,7 +53,7 @@ class TypesControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->TypesController);
 	}

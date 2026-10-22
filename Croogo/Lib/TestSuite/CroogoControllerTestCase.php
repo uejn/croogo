@@ -16,12 +16,12 @@ App::uses('CroogoTestFixture', 'Croogo.TestSuite');
  */
 class CroogoControllerTestCase extends ControllerTestCase {
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass(): void {
 		self::_restoreSettings();
 		Configure::write('Config.language', 'eng');
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass(): void {
 		self::_restoreSettings();
 		Configure::write('Config.language', Configure::read('Site.locale'));
 	}
@@ -38,8 +38,13 @@ class CroogoControllerTestCase extends ControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
+
+		// Cada test arranca con un GET. En la consola no hay REQUEST_METHOD, testAction() deja
+		// el del test anterior, y el SecurityComponent de uejn/cakephp valida todo lo que no
+		// sea GET, HEAD u OPTIONS: sin esto, un pedido armado a mano podía pasar por POST.
+		$_SERVER['REQUEST_METHOD'] = 'GET';
 
 		$appDir = CakePlugin::path('Croogo') . 'Test' . DS . 'test_app' . DS;
 
@@ -70,7 +75,7 @@ class CroogoControllerTestCase extends ControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		if (CakeSession::started()) {
 			CakeSession::clear();

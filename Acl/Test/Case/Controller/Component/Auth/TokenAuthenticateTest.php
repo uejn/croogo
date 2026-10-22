@@ -38,7 +38,7 @@ class TokenAuthenticateTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Collection = $this->getMock('ComponentCollection');
 		$this->auth = new TokenAuthenticate($this->Collection, array(

@@ -14,7 +14,7 @@ class PublishableBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->OrderRecord = ClassRegistry::init('OrderRecord');
 		$this->OrderRecord->Behaviors->load('Croogo.Publishable', array(
@@ -30,7 +30,7 @@ class PublishableBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->OrderRecord);
 		ClassRegistry::flush();

@@ -38,7 +38,7 @@ class CommentsControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->_level = Configure::write('Comment.level');
 		$_SERVER['REMOTE_ADDR'] = '127.0.0.1';
@@ -48,14 +48,10 @@ class CommentsControllerTest extends CroogoControllerTestCase {
 				'redirect',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 			),
 		));
-		$this->CommentsController->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 /**
@@ -63,7 +59,7 @@ class CommentsControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		Configure::write('Comment.level', $this->_level);
 		unset($this->CommentsController);

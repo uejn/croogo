@@ -20,7 +20,7 @@ class CommentTest extends CroogoTestCase {
 
 	protected $_record;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->_level = Configure::read('Comment.level');
 		Configure::write('Comment.level', 10);
@@ -28,7 +28,7 @@ class CommentTest extends CroogoTestCase {
 		$this->_record = $this->Comment->findById(1);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		Configure::write('Comment.level', $this->_level);
 		unset($this->Comment);
@@ -216,7 +216,7 @@ class CommentTest extends CroogoTestCase {
  * testAddCommentThrowsExceptionWithInvalidNodeId
  */
 	public function testAddCommentThrowsExceptionWithInvalidNodeId() {
-		$this->setExpectedException('NotFoundException');
+		$this->expectException('NotFoundException');
 		$this->Comment->add(
 			array('Comment' => array('name', 'email', 'body')),
 			'Node',
@@ -229,7 +229,7 @@ class CommentTest extends CroogoTestCase {
  * testAddCommentThrowsExceptionWithInvalidParentId
  */
 	public function testAddCommentThrowsExceptionWithInvalidParentId() {
-		$this->setExpectedException('NotFoundException');
+		$this->expectException('NotFoundException');
 		$data = array(
 			'Comment' => array(
 				'name' => 'Test Visitor',

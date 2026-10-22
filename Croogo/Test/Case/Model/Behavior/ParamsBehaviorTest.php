@@ -37,7 +37,7 @@ class ParamsBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Type = ClassRegistry::init('Taxonomy.Type');
 	}
@@ -47,7 +47,7 @@ class ParamsBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->Type);
 		ClassRegistry::flush();
@@ -139,12 +139,12 @@ class ParamsBehaviorTest extends CroogoTestCase {
 			'param6' => false,
 		);
 		$this->assertEqual($type['Params'], $expected);
-		$this->assertInternalType('boolean', $type['Params']['param1']);
-		$this->assertInternalType('boolean', $type['Params']['param2']);
-		$this->assertInternalType('boolean', $type['Params']['param3']);
-		$this->assertInternalType('boolean', $type['Params']['param4']);
-		$this->assertInternalType('boolean', $type['Params']['param5']);
-		$this->assertInternalType('boolean', $type['Params']['param6']);
+		$this->assertIsBool($type['Params']['param1']);
+		$this->assertIsBool($type['Params']['param2']);
+		$this->assertIsBool($type['Params']['param3']);
+		$this->assertIsBool($type['Params']['param4']);
+		$this->assertIsBool($type['Params']['param5']);
+		$this->assertIsBool($type['Params']['param6']);
 	}
 
 	public function testNumeric() {
@@ -162,10 +162,10 @@ class ParamsBehaviorTest extends CroogoTestCase {
 			'param4' => 1,
 		);
 		$this->assertEqual($type['Params'], $expected);
-		$this->assertInternalType('integer', $type['Params']['param1']);
-		$this->assertInternalType('integer', $type['Params']['param2']);
-		$this->assertInternalType('integer', $type['Params']['param3']);
-		$this->assertInternalType('integer', $type['Params']['param4']);
+		$this->assertIsInt($type['Params']['param1']);
+		$this->assertIsInt($type['Params']['param2']);
+		$this->assertIsInt($type['Params']['param3']);
+		$this->assertIsInt($type['Params']['param4']);
 	}
 
 }

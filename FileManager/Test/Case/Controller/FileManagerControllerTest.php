@@ -40,7 +40,7 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->FileManager);
 	}
@@ -54,7 +54,7 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		$url = '/admin/file_manager/file_manager/browse?path=' . urlencode(APP . '../../..');
 		$request = new CakeRequest($url);
 		$response = new CakeResponse();
-		$this->FileManager = new FileManagerController($request, $response);
+		$this->FileManager = $this->getMock('FileManagerController', array('redirect'), array($request, $response));
 		$this->FileManager->request->addParams(array(
 			'prefix' => 'admin',
 			'admin' => true,
@@ -76,8 +76,8 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		));
 		$this->FileManager->startupProcess();
 		$this->FileManager->invokeAction($this->FileManager->request);
-		$message = $this->FileManager->Session->read('Message.flash.message');
-		$this->assertContains('is restricted', $message);
+		$message = $this->FileManager->Session->read('Message.flash.0.message');
+		$this->assertStringContainsString('is restricted', $message);
 	}
 
 /**
@@ -89,7 +89,7 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		$url = '/admin/file_manager/file_manager/browse?path=' . urlencode(APP);
 		$request = new CakeRequest($url);
 		$response = new CakeResponse();
-		$this->FileManager = new FileManagerController($request, $response);
+		$this->FileManager = $this->getMock('FileManagerController', array('redirect'), array($request, $response));
 		$this->FileManager->request->addParams(array(
 			'prefix' => 'admin',
 			'admin' => true,
@@ -111,7 +111,7 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		));
 		$this->FileManager->startupProcess();
 		$this->FileManager->invokeAction($this->FileManager->request);
-		$message = $this->FileManager->Session->read('Message.flash.message');
+		$message = $this->FileManager->Session->read('Message.flash.0.message');
 		$this->assertEmpty($message);
 	}
 
@@ -124,7 +124,7 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		$url = '/admin/file_manager/file_manager/browse?path=' . urlencode(APP) . 'webroot';
 		$request = new CakeRequest($url);
 		$response = new CakeResponse();
-		$this->FileManager = new FileManagerController($request, $response);
+		$this->FileManager = $this->getMock('FileManagerController', array('redirect'), array($request, $response));
 		$this->FileManager->request->addParams(array(
 			'prefix' => 'admin',
 			'admin' => true,
@@ -146,7 +146,7 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		));
 		$this->FileManager->startupProcess();
 		$this->FileManager->invokeAction($this->FileManager->request);
-		$message = $this->FileManager->Session->read('Message.flash.message');
+		$message = $this->FileManager->Session->read('Message.flash.0.message');
 		$this->assertEmpty($message);
 	}
 
@@ -184,8 +184,8 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		));
 		$this->FileManager->startupProcess();
 		$this->FileManager->invokeAction($this->FileManager->request);
-		$message = $this->FileManager->Session->read('Message.flash.message');
-		$this->assertContains('is restricted', $message);
+		$message = $this->FileManager->Session->read('Message.flash.0.message');
+		$this->assertStringContainsString('is restricted', $message);
 	}
 
 /**
@@ -222,8 +222,8 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		));
 		$this->FileManager->startupProcess();
 		$this->FileManager->invokeAction($this->FileManager->request);
-		$message = $this->FileManager->Session->read('Message.flash.message');
-		$this->assertContains('is restricted', $message);
+		$message = $this->FileManager->Session->read('Message.flash.0.message');
+		$this->assertStringContainsString('is restricted', $message);
 	}
 
 /**
@@ -260,8 +260,8 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		));
 		$this->FileManager->startupProcess();
 		$this->FileManager->invokeAction($this->FileManager->request);
-		$message = $this->FileManager->Session->read('Message.flash.message');
-		$this->assertContains('is restricted', $message);
+		$message = $this->FileManager->Session->read('Message.flash.0.message');
+		$this->assertStringContainsString('is restricted', $message);
 	}
 
 /**
@@ -296,8 +296,8 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
 		$this->FileManager->startupProcess();
 		$this->FileManager->request->data['path'] = APP . '../../..';
 		$this->FileManager->invokeAction($this->FileManager->request);
-		$message = $this->FileManager->Session->read('Message.flash.message');
-		$this->assertContains('is restricted', $message);
+		$message = $this->FileManager->Session->read('Message.flash.0.message');
+		$this->assertStringContainsString('is restricted', $message);
 	}
 
 }

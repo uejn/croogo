@@ -7,7 +7,7 @@ CroogoPlugin::load(array(
 CroogoEventManager::loadListeners();
 Croogo::dispatchEvent('Croogo.bootstrapComplete');
 
-class CroogoTestsTest extends PHPUnit_Framework_TestSuite {
+class CroogoTestsTest extends PHPUnit\Framework\TestSuite {
 
 /**
  * suite

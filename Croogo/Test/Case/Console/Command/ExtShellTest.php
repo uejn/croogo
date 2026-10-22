@@ -51,7 +51,7 @@ class ExtShellTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$Folder = new Folder(APP . 'Plugin' . DS . 'Example');
 		$Folder->copy(CakePlugin::path('Croogo') . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS . 'Example');
@@ -63,7 +63,7 @@ class ExtShellTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		$Folder = new Folder(CakePlugin::path('Croogo') . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS . 'Example');
 		$Folder->delete();

@@ -1,3 +1,65 @@
+# Croogo 2 para PHP 8: versión de la UEJN
+
+Fork de [croogo/croogo](https://github.com/croogo/croogo) en la tag `2.3.3`, la última de la rama
+2, que no se mantiene más. Lo usa [AfiGestión](https://github.com/uejn/afigestion) para salir de
+PHP 7.1 (uejn/afigestion#428, uejn/afigestion#430).
+
+- **Exige PHP 8.** Corre sobre [`uejn/cakephp`](https://github.com/uejn/cakephp) (CakePHP 2 para
+  PHP 8) y [`uejn/migrations`](https://github.com/uejn/migrations).
+- El paquete se sigue llamando `croogo/croogo`. Los tags son `2.3.3.N`.
+- La rama es `2.x`; `master` es la de upstream (Croogo 4/5) y no se toca.
+
+En el `composer.json` de AfiGestión:
+
+```json
+{
+	"repositories": [
+		{ "type": "vcs", "url": "https://github.com/uejn/cakephp" },
+		{ "type": "vcs", "url": "https://github.com/uejn/croogo" },
+		{ "type": "vcs", "url": "https://github.com/uejn/migrations" }
+	],
+	"require": {
+		"cakephp/cakephp": "2.10.24.3",
+		"croogo/croogo": "2.3.3.1",
+		"cakedc/migrations": "2.6.0.1"
+	}
+}
+```
+
+Las versiones van fijas, sin `~` ni `^`: se suben a mano, con un PR en AfiGestión.
+
+## Tests
+
+PHP 8.2, MySQL 8 y PHPUnit 9. Cada archivo de test corre en su propio proceso, contra una línea
+base (`.github/ci/tests.baseline`): el CI falla si algo queda peor que ahí.
+
+```bash
+.github/ci/tests.sh preparar   # arma ./app (croogo/app v2.3.2) e instala con composer
+.github/ci/tests.sh            # corre y compara contra la línea base
+.github/ci/tests.sh --update   # si algo mejoró: baja la línea base en el mismo PR
+```
+
+La base se elige con `CROOGO_DB` y `CROOGO_DB_HOST`.
+
+## Cambios de la UEJN
+
+### 2.3.3.1 (22/10/2026)
+
+- **PHP 8:** las clases que extendían `Object` extienden `CakeObject`; guion escapado en dos regex
+  de `CroogoAppModel` (PCRE2); el menú del admin no lee índices de `null` sin usuario logueado.
+- **CVE-2026-16219 (File Manager):** `isEditable()`/`isDeletable()` comparaban sólo el prefijo de la
+  ruta, así que una carpeta hermana con el mismo nombre al principio pasaba por adentro, y si la
+  carpeta permitida no existía se aceptaba cualquier ruta. `isWithinPath()` exige que las dos rutas
+  existan y compara hasta el separador; los chequeos del controller (incluido `admin_browse`)
+  usan lo mismo. El de borrar además llamaba a `join()` con los argumentos al revés, que en PHP 8
+  es un `TypeError`.
+- **Tests en PHPUnit 9**, cada archivo en su propio proceso. Los que andaban sólo porque otro
+  anterior de la suite dejaba una tabla o una clase cargada declaran lo que usan.
+- **Ojo:** `FileManager.editablePaths` sigue siendo todo `APP` por defecto, como en upstream: quien
+  tenga acceso al File Manager puede editar los `.php` de la aplicación.
+
+---
+
 # Croogo
 
 **Croogo** is a free, open source, content management system for PHP, released under [MIT License](http://github.com/croogo/croogo/blob/master/LICENSE.txt).

@@ -29,10 +29,12 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 	public $fixtures = array(
 		'plugin.settings.setting',
 		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
 		'plugin.nodes.node',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->generate('TestApp', array(
 			'components' => array(
@@ -46,7 +48,7 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 		));
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->controller);
 	}
@@ -80,16 +82,24 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 		$filePath = App::themePath($theme) . 'TestApp'. DS . 'admin_edit.ctp';
 
 		$expected = '<h1>I should be displayed</h1>';
+		// La vista está versionada: se pisa para el test y se devuelve como estaba.
+		$original = file_exists($filePath) ? file_get_contents($filePath) : null;
 		$File = new File($filePath, true, 0777);
 		$File->write($expected);
 		$File->close();
 
-		$result = $this->testAction('/admin/test_app/edit', array(
-			'return' => 'contents',
-		));
-
-		$File->delete();
-		$this->assertContains($expected, trim($result));
+		try {
+			$result = $this->testAction('/admin/test_app/edit', array(
+				'return' => 'contents',
+			));
+		} finally {
+			if ($original === null) {
+				$File->delete();
+			} else {
+				file_put_contents($filePath, $original);
+			}
+		}
+		$this->assertStringContainsString($expected, trim($result));
 	}
 
 /**
@@ -112,7 +122,7 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 		$result = $this->testAction('/admin/test_app/index', array(
 			'return' => 'view',
 		));
-		$this->assertContains('btn-group', $result);
+		$this->assertStringContainsString('btn-group', $result);
 	}
 
 /**
@@ -125,7 +135,7 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 		$result = $this->testAction('/admin/test_app/index_no_actions', array(
 			'return' => 'view',
 		));
-		$this->assertNotContains('nav-buttons', $result);
+		$this->assertStringNotContainsString('nav-buttons', $result);
 	}
 
 /**
@@ -139,7 +149,7 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 		$result = $this->testAction('/admin/test_app/index', array(
 			'return' => 'contents',
 		));
-		$this->assertContains('Terms &amp; Conditions', $result);
+		$this->assertStringContainsString('Terms &amp; Conditions', $result);
 	}
 
 /**
@@ -153,7 +163,7 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 		$result = $this->testAction('/admin/test_app/index', array(
 			'return' => 'contents',
 		));
-		$this->assertContains('Terms & Conditions', $result);
+		$this->assertStringContainsString('Terms & Conditions', $result);
 	}
 
 /**

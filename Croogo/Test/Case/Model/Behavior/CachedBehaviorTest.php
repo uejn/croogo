@@ -15,7 +15,7 @@ class CachedBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->User = ClassRegistry::init('Users.User');
 		$this->User->Behaviors->unload('Acl');
@@ -28,7 +28,7 @@ class CachedBehaviorTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->User);
 		ClassRegistry::flush();

@@ -11,7 +11,7 @@ class InstallTest extends CroogoTestCase {
 		'plugin.install.install_role',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		CakePlugin::load('Install');

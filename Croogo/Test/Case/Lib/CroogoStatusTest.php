@@ -23,7 +23,7 @@ class CroogoStatusTest extends CroogoTestCase implements CakeEventListener {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		CakeEventManager::instance()->attach($this);
 		$this->CroogoStatus = new CroogoStatus();
 	}
@@ -31,7 +31,7 @@ class CroogoStatusTest extends CroogoTestCase implements CakeEventListener {
 /**
  * tearDown
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		CakeEventManager::instance()->detach($this);
 		unset($this->CroogoStatus);
 	}

@@ -18,11 +18,11 @@ class DataMigrationTest extends CroogoTestCase {
 		),
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		$this->DataMigration = new DataMigration();
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->DataMigration);
 	}
 
@@ -45,8 +45,8 @@ class DataMigrationTest extends CroogoTestCase {
 		$contents = file_get_contents($output);
 		unlink($output);
 
-		$this->assertContains('class MovieData {', $contents);
-		$this->assertContains('public $table = \'movies\';', $contents);
+		$this->assertStringContainsString('class MovieData {', $contents);
+		$this->assertStringContainsString('public $table = \'movies\';', $contents);
 
 		ClassRegistry::init('Movie')->saveAll($this->_sampleData);
 
@@ -58,7 +58,7 @@ class DataMigrationTest extends CroogoTestCase {
 		unlink($output);
 
 		foreach ($this->_sampleData as $movie) {
-			$this->assertContains($movie['Movie']['title'], $contents);
+			$this->assertStringContainsString($movie['Movie']['title'], $contents);
 		}
 	}
 

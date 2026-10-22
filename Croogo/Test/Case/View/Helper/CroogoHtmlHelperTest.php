@@ -11,27 +11,29 @@ class CroogoHtmlHelperTest extends CroogoTestCase {
 
 	public $fixtures = array(
 		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		$controller = null;
 		$this->View = new View($controller);
 		$this->CroogoHtml = new CroogoHtmlHelper($this->View);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->View);
 		unset($this->CroogoHtml);
 	}
 
 	public function testIcon() {
 		$result = $this->CroogoHtml->icon('remove');
-		$this->assertContains('<i class="icon-remove"></i>', $result);
+		$this->assertStringContainsString('<i class="icon-remove"></i>', $result);
 	}
 
 	public function testStatusOk() {
 		$result = $this->CroogoHtml->status(1);
-		$this->assertContains('<i class="icon-ok green"></i>', $result);
+		$this->assertStringContainsString('<i class="icon-ok green"></i>', $result);
 	}
 
 	public function testStatusOkWithUrl() {
@@ -54,7 +56,7 @@ class CroogoHtmlHelperTest extends CroogoTestCase {
 
 	public function testStatusRemove() {
 		$result = $this->CroogoHtml->status(0);
-		$this->assertContains('<i class="icon-remove red"></i>', $result);
+		$this->assertStringContainsString('<i class="icon-remove red"></i>', $result);
 	}
 
 	public function testStatusRemoveWithUrl() {
@@ -77,8 +79,8 @@ class CroogoHtmlHelperTest extends CroogoTestCase {
 
 	public function testLink() {
 		$result = $this->CroogoHtml->link('', '/remove', array('icon' => 'remove', 'button' => 'danger'));
-		$this->assertContains('class="btn btn-danger"', $result);
-		$this->assertContains('<i class="icon-remove icon-large"></i>', $result);
+		$this->assertStringContainsString('class="btn btn-danger"', $result);
+		$this->assertStringContainsString('<i class="icon-remove icon-large"></i>', $result);
 	}
 
 /**
@@ -90,8 +92,8 @@ class CroogoHtmlHelperTest extends CroogoTestCase {
 			'iconSize' => 'small',
 			'button' => 'danger'
 		));
-		$this->assertContains('class="btn btn-danger"', $result);
-		$this->assertContains('<i class="icon-remove"></i>', $result);
+		$this->assertStringContainsString('class="btn btn-danger"', $result);
+		$this->assertStringContainsString('<i class="icon-remove"></i>', $result);
 	}
 
 /**
@@ -128,7 +130,7 @@ class CroogoHtmlHelperTest extends CroogoTestCase {
 
 	public function testLinkDefaultButton() {
 		$result = $this->CroogoHtml->link('Remove', '/remove', array('button' => 'default'));
-		$this->assertContains('<a href="/remove" class="btn btn-default">Remove</a>', $result);
+		$this->assertStringContainsString('<a href="/remove" class="btn btn-default">Remove</a>', $result);
 	}
 
 	public function testLinkOptionsIsNull() {
@@ -176,8 +178,8 @@ class CroogoHtmlHelperTest extends CroogoTestCase {
 	public function testAddPathAndGetCrumbList() {
 		$this->CroogoHtml->addPath('/yes/we/can', '/');
 		$result = $this->CroogoHtml->getCrumbList();
-		$this->assertContains('<a href="/yes/">yes</a>', $result);
-		$this->assertContains('<a href="/yes/we/">we</a>', $result);
-		$this->assertContains('<a href="/yes/we/can/">can</a>', $result);
+		$this->assertStringContainsString('<a href="/yes/">yes</a>', $result);
+		$this->assertStringContainsString('<a href="/yes/we/">we</a>', $result);
+		$this->assertStringContainsString('<a href="/yes/we/can/">can</a>', $result);
 	}
 }

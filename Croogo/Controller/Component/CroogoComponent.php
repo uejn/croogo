@@ -133,7 +133,9 @@ class CroogoComponent extends Component {
 			),
 		));
 
-		$user = $this->Session->read('Auth.User');
+		$user = (array)$this->Session->read('Auth.User') + array(
+			'id' => null, 'email' => '', 'username' => '',
+		);
 		$gravatarUrl = '<img src="//www.gravatar.com/avatar/' . md5($user['email']) . '?s=23" class="img-rounded"/> ';
 		CroogoNav::add('top-right', 'user', array(
 			'icon' => false,

@@ -10,9 +10,11 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 
 	public $fixtures = array(
 		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		$controller = null;
 		$this->View = new View($controller);
 		$this->Paginator = new CroogoPaginatorHelper($this->View);
@@ -20,7 +22,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		$this->Paginator->Html = new HtmlHelper($this->View);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->View, $this->Paginator);
 	}
 
@@ -38,7 +40,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Paginator->prev();
-		$this->assertContains('</li>', $result);
+		$this->assertStringContainsString('</li>', $result);
 	}
 
 	public function testNext() {
@@ -55,7 +57,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Paginator->next();
-		$this->assertContains('</li>', $result);
+		$this->assertStringContainsString('</li>', $result);
 	}
 
 	public function testFirst() {
@@ -72,7 +74,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Paginator->first();
-		$this->assertContains('</li>', $result);
+		$this->assertStringContainsString('</li>', $result);
 	}
 
 	public function testLast() {
@@ -89,7 +91,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Paginator->last();
-		$this->assertContains('</li>', $result);
+		$this->assertStringContainsString('</li>', $result);
 	}
 
 	public function testNumbersFewPages() {
@@ -103,9 +105,9 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 				'paramType' => 'named'
 		));
 		$result = $this->Paginator->numbers();
-		$this->assertContains('>1</a>', $result);
-		$this->assertContains('>2</a>', $result);
-		$this->assertContains('class="active">3</a>', $result);
+		$this->assertStringContainsString('>1</a>', $result);
+		$this->assertStringContainsString('>2</a>', $result);
+		$this->assertStringContainsString('class="active">3</a>', $result);
 	}
 
 	public function testNumbersManyPages() {
@@ -119,9 +121,9 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 				'paramType' => 'named'
 		));
 		$result = $this->Paginator->numbers();
-		$this->assertContains('>21</a>', $result);
-		$this->assertContains('>28</a>', $result);
-		$this->assertContains('class="active">25</a>', $result);
+		$this->assertStringContainsString('>21</a>', $result);
+		$this->assertStringContainsString('>28</a>', $result);
+		$this->assertStringContainsString('class="active">25</a>', $result);
 	}
 
 	public function testNumbersPageEqualsEnd() {
@@ -135,8 +137,8 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 				'paramType' => 'named'
 		));
 		$result = $this->Paginator->numbers();
-		$this->assertContains('>22</a>', $result);
-		$this->assertContains('class="active">30</a>', $result);
+		$this->assertStringContainsString('>22</a>', $result);
+		$this->assertStringContainsString('class="active">30</a>', $result);
 	}
 
 }

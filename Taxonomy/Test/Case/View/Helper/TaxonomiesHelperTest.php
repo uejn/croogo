@@ -15,7 +15,7 @@ class TaxonomiesHelperTest extends CroogoTestCase {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->ComponentCollection = new ComponentCollection();
 
@@ -28,7 +28,7 @@ class TaxonomiesHelperTest extends CroogoTestCase {
 /**
  * tearDown
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->View);
 		unset($this->Taxonomies);
 	}
@@ -47,8 +47,8 @@ class TaxonomiesHelperTest extends CroogoTestCase {
 			'threaded' => array(),
 		);
 		Croogo::dispatchEvent('Helper.Layout.beforeFilter', $this->View, array('content' => &$content));
-		$this->assertContains('vocabulary-1', $content);
-		$this->assertContains('class="vocabulary"', $content);
+		$this->assertStringContainsString('vocabulary-1', $content);
+		$this->assertStringContainsString('class="vocabulary"', $content);
 	}
 
 }

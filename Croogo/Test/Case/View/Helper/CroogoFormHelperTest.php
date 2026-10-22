@@ -6,13 +6,17 @@ App::uses('CroogoTestCase', 'Croogo.TestSuite');
 
 class CroogoFormHelperTest extends CroogoTestCase {
 
-	public function setUp() {
+	public $fixtures = array(
+		'plugin.comments.comment',
+	);
+
+	public function setUp(): void {
 		$controller = null;
 		$this->View = new View($controller);
 		$this->CroogoForm = new CroogoFormHelper($this->View);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->View);
 		unset($this->CroogoHtml);
 	}
@@ -507,7 +511,7 @@ class CroogoFormHelperTest extends CroogoTestCase {
 			),
 		));
 		$this->assertStringStartsWith('<div class="input radio">', $result);
-		$this->assertContains('class="super-radio-button"', $result);
+		$this->assertStringContainsString('class="super-radio-button"', $result);
 	}
 
 /**
@@ -519,7 +523,7 @@ class CroogoFormHelperTest extends CroogoTestCase {
 			'class' => 'super-checkbox-button',
 		));
 		$this->assertStringStartsWith('<div class="input checkbox">', $result);
-		$this->assertContains('class="super-checkbox-button"', $result);
+		$this->assertStringContainsString('class="super-checkbox-button"', $result);
 	}
 
 }

@@ -7,6 +7,10 @@ App::uses('Translations', 'Translate.Lib');
 class TranslateControllerTest extends CroogoControllerTestCase {
 
 	public $fixtures = array(
+		'plugin.blocks.block',
+		'plugin.blocks.region',
+		'plugin.menus.link',
+		'plugin.menus.menu',
 		'plugin.users.aro',
 		'plugin.users.aco',
 		'plugin.users.aros_aco',
@@ -29,7 +33,7 @@ class TranslateControllerTest extends CroogoControllerTestCase {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		if (!CakePlugin::loaded('Translate')) {
 			CakePlugin::load('Translate');
@@ -40,15 +44,11 @@ class TranslateControllerTest extends CroogoControllerTestCase {
 				'redirect',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 				)
 			)
 		);
-		$this->TranslateController->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 		$this->TranslateController->Security->Session = $this->getMock('CakeSession');
 	}
 

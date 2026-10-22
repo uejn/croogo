@@ -31,12 +31,12 @@ class TermTest extends CroogoTestCase {
 		'plugin.taxonomy.vocabulary',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Term = ClassRegistry::init('Taxonomy.Term');
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->Term);
 	}
@@ -95,7 +95,7 @@ class TermTest extends CroogoTestCase {
 	}
 
 	public function testFindByVocabularyWithNoVocabularyIdShouldTriggerError() {
-		$this->setExpectedException('PHPUnit_Framework_error');
+		$this->expectException('PHPUnit\Framework\Error\Error');
 		$this->Term->find('byVocabulary');
 	}
 
@@ -140,7 +140,7 @@ class TermTest extends CroogoTestCase {
 	}
 
 	public function testHasSlugChangedShouldThrowExceptionOnInvalidId() {
-		$this->setExpectedException('NotFoundException');
+		$this->expectException('NotFoundException');
 		$this->Term->hasSlugChanged('invalid', 'blah');
 	}
 

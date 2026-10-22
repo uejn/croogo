@@ -1,4 +1,5 @@
 <?php
+App::uses('CroogoTheme', 'Extensions.Lib');
 App::uses('CroogoHelper', 'Croogo.View/Helper');
 App::uses('SessionComponent', 'Controller/Component');
 App::uses('AuthComponent', 'Controller/Component');
@@ -24,12 +25,14 @@ class CroogoHelperTest extends CroogoTestCase {
 		'plugin.settings.setting',
 		'plugin.users.role',
 		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
 	);
 
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->ComponentCollection = new ComponentCollection();
 
@@ -63,7 +66,7 @@ class CroogoHelperTest extends CroogoTestCase {
 /**
  * tearDown
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		ClassRegistry::flush();
 		CroogoNav::items('sidebar', $this->menus);
 		unset($this->Croogo);
@@ -179,7 +182,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Croogo->adminTabs(true);
-		$this->assertContains('test-title', $result);
+		$this->assertStringContainsString('test-title', $result);
 	}
 
 /**
@@ -209,8 +212,8 @@ class CroogoHelperTest extends CroogoTestCase {
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Croogo->adminTabs(true);
-		$this->assertContains($testData, $result);
-		$this->assertContains('test-title', $result);
+		$this->assertStringContainsString($testData, $result);
+		$this->assertStringContainsString('test-title', $result);
 	}
 
 	public function testAdminBoxes() {
@@ -226,7 +229,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Croogo->adminBoxes('Title');
-		$this->assertContains("class='box'", $result);
+		$this->assertStringContainsString("class='box'", $result);
 	}
 
 	public function testAdminBoxesAlreadyPrinted() {
@@ -263,8 +266,8 @@ class CroogoHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Croogo->adminBoxes();
-		$this->assertContains('Title', $result);
-		$this->assertContains('Content', $result);
+		$this->assertStringContainsString('Title', $result);
+		$this->assertStringContainsString('Content', $result);
 	}
 
 	public function testSettingsInputCheckbox() {
@@ -272,7 +275,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$setting['Setting']['value'] = 0;
 		$setting['Setting']['description'] = 'A description';
 		$result = $this->Croogo->settingsInput($setting, 'MyLabel', 0);
-		$this->assertContains('type="checkbox"', $result);
+		$this->assertStringContainsString('type="checkbox"', $result);
 	}
 
 	public function testSettingsInputCheckboxChecked() {
@@ -280,8 +283,8 @@ class CroogoHelperTest extends CroogoTestCase {
 		$setting['Setting']['value'] = 1;
 		$setting['Setting']['description'] = 'A description';
 		$result = $this->Croogo->settingsInput($setting, 'MyLabel', 0);
-		$this->assertContains('type="checkbox"', $result);
-		$this->assertContains('checked="checked"', $result);
+		$this->assertStringContainsString('type="checkbox"', $result);
+		$this->assertStringContainsString('checked="checked"', $result);
 	}
 
 	public function testSettingsInputTextbox() {
@@ -289,7 +292,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$setting['Setting']['description'] = 'A description';
 		$setting['Setting']['value'] = 'Yes';
 		$result = $this->Croogo->settingsInput($setting, 'MyLabel', 0);
-		$this->assertContains('type="text"', $result);
+		$this->assertStringContainsString('type="text"', $result);
 	}
 
 	public function testSettingsInputTextarea() {
@@ -297,7 +300,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$setting['Setting']['description'] = 'A description';
 		$setting['Setting']['value'] = 'Yes';
 		$result = $this->Croogo->settingsInput($setting, 'MyLabel', 0);
-		$this->assertContains('</textarea>', $result);
+		$this->assertStringContainsString('</textarea>', $result);
 	}
 
 /**
@@ -372,7 +375,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$result = $this->Croogo->adminRowAction('<span>Del</span>', $url, array(), $sure);
 		$this->assertTags($result, $expected);
 		$quot = '&quot;';
-		$this->assertContains($quot . $sure . $quot, $result);
+		$this->assertStringContainsString($quot . $sure . $quot, $result);
 	}
 
 /**

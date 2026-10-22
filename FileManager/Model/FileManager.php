@@ -86,9 +86,31 @@ class FileManager extends FileManagerAppModel {
  * @return boolean True if $pathToCheck resides under $referencePath
  */
 	protected function _isWithinPath($referencePath, $pathToCheck) {
+		return $this->isWithinPath($referencePath, $pathToCheck);
+	}
+
+/**
+ * Checks that $pathToCheck is $referencePath or resides under it
+ *
+ * Both are resolved with realpath(): a path that does not exist is not within anything.
+ * The prefix is compared up to a directory separator, so /app/webroot-x is not within
+ * /app/webroot (CVE-2026-16219).
+ *
+ * @param string $referencePath Reference path
+ * @param string $pathToCheck Path to check
+ * @return boolean True if $pathToCheck resides under $referencePath
+ */
+	public function isWithinPath($referencePath, $pathToCheck) {
+		$reference = realpath($referencePath);
 		$path = realpath($pathToCheck);
-		$regex = '/^' . preg_quote(realpath($referencePath), '/') . '/';
-		return preg_match($regex, $path) > 0;
+		if ($reference === false || $path === false) {
+			return false;
+		}
+		if ($path === $reference) {
+			return true;
+		}
+		$reference = rtrim($reference, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+		return strpos($path, $reference) === 0;
 	}
 
 }

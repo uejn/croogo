@@ -56,7 +56,7 @@ class InstallShellTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		App::build(array(
 			'Plugin' => array(CakePlugin::path('Croogo') . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS),
@@ -69,7 +69,7 @@ class InstallShellTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		$Folder = new Folder(TMP);
 		$files = $Folder->find('croogo_.*');

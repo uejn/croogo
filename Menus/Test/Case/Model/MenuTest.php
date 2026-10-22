@@ -50,7 +50,7 @@ class MenuTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Menu = ClassRegistry::init('TestMenu');
 	}
@@ -60,7 +60,7 @@ class MenuTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->Menu);
 	}

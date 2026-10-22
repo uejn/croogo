@@ -35,7 +35,7 @@ class BlocksControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		App::build(array(
 			'View' => array(CakePlugin::path('Blocks') . 'View' . DS)
@@ -45,14 +45,10 @@ class BlocksControllerTest extends CroogoControllerTestCase {
 				'redirect',
 			),
 			'components' => array(
-				'Auth' => array('user'),
 				'Session',
 			),
 		));
-		$this->BlocksController->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 /**
@@ -60,7 +56,7 @@ class BlocksControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->BlocksController);
 	}

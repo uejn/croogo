@@ -11,7 +11,7 @@
  * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
  * @link     http://www.croogo.org
  */
-class CroogoTheme extends Object {
+class CroogoTheme extends CakeObject {
 
 /**
  * Constructor

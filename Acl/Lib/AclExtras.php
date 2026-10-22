@@ -28,7 +28,7 @@ App::uses('Shell', 'Console');
  *
  * @package Croogo.Acl.Lib
  */
-class AclExtras extends Object {
+class AclExtras extends CakeObject {
 
 /**
  * Contains instance of AclComponent

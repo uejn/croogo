@@ -30,12 +30,12 @@ class TaxonomyTest extends CroogoTestCase {
 		'plugin.taxonomy.vocabulary',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Taxonomy = ClassRegistry::init('Taxonomy.Taxonomy');
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->Taxonomy);
 	}

@@ -15,7 +15,7 @@ class CroogoEventManagerTest extends CroogoTestCase {
 		'plugin.settings.setting',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		CroogoPlugin::unload('Example');
 		CroogoPlugin::load('Shops');
@@ -31,7 +31,7 @@ class CroogoEventManagerTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		CroogoPlugin::unload('Shops');
 	}

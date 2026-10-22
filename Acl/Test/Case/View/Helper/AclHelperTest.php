@@ -14,7 +14,7 @@ class AclHelperTest extends CroogoTestCase {
 		'plugin.users.aros_aco',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$View = $this->getMock('View');
 		$this->AclHelper = $this->getMock('AclHelper', null, array($View));
