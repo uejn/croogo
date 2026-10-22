@@ -12,14 +12,14 @@ class FileManagerTest extends CroogoTestCase {
 
 	private $__testAppPath;
 
-	public function setUp() {
+	public function setUp(): void {
 		$this->FileManager = new FileManager(false, null, null, null);
 		$this->__testAppPath = CakePlugin::path('FileManager') . 'Test' . DS . 'test_app' . DS;
 		$this->__setFilePathsForTests();
 		parent::setUp();
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->FileManager);
 		parent::tearDown();
 	}

@@ -12,7 +12,7 @@ class CroogoPluginTest extends CroogoTestCase {
  */
 	public $CroogoPlugin;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		App::build(array(
 			'Plugin' => array(CakePlugin::path('Extensions') . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS),
@@ -41,7 +41,7 @@ class CroogoPluginTest extends CroogoTestCase {
 		);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->CroogoPlugin);
 	}
@@ -288,9 +288,9 @@ class CroogoPluginTest extends CroogoTestCase {
 
 /**
  * testDeleteEmptyPlugin
- * @expectedException InvalidArgumentException
  */
 	public function testDeleteEmptyPlugin() {
+		$this->expectException('InvalidArgumentException');
 		$this->CroogoPlugin->delete(null);
 	}
 

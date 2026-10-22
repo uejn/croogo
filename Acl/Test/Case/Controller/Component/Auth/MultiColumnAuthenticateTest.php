@@ -38,7 +38,7 @@ class MultiColumnAuthenticateTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Collection = $this->getMock('ComponentCollection');
 		$this->auth = new MultiColumnAuthenticate($this->Collection, array(

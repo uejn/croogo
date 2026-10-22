@@ -29,7 +29,7 @@ class TranslateControllerTest extends CroogoControllerTestCase {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		if (!CakePlugin::loaded('Translate')) {
 			CakePlugin::load('Translate');

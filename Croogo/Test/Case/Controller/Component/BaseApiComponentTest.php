@@ -34,7 +34,7 @@ class BaseApiComponentTest extends CroogoTestCase {
 		'plugin.settings.setting',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$request = $this->_apiRequest(array(
 			'api' => 'api', 'prefix' => 'v1.0',

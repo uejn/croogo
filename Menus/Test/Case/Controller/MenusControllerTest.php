@@ -35,7 +35,7 @@ class MenusControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->MenusController = $this->generate('Menus.Menus', array(
 			'methods' => array(
@@ -57,7 +57,7 @@ class MenusControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->MenusController);
 	}

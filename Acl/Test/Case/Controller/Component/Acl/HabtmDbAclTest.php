@@ -39,7 +39,7 @@ class HabtmDbAclTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		Configure::write('Acl.classname', 'HabtmDbAcl');
 		Configure::write('Acl.database', 'test');
@@ -56,7 +56,7 @@ class HabtmDbAclTest extends CakeTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->Acl);
 	}

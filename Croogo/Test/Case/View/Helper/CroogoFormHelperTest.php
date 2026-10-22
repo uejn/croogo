@@ -6,13 +6,13 @@ App::uses('CroogoTestCase', 'Croogo.TestSuite');
 
 class CroogoFormHelperTest extends CroogoTestCase {
 
-	public function setUp() {
+	public function setUp(): void {
 		$controller = null;
 		$this->View = new View($controller);
 		$this->CroogoForm = new CroogoFormHelper($this->View);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->View);
 		unset($this->CroogoHtml);
 	}

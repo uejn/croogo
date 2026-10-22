@@ -15,7 +15,7 @@ class NodesHelperTest extends CroogoTestCase {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$request = $this->getMock('CakeRequest');
@@ -28,7 +28,7 @@ class NodesHelperTest extends CroogoTestCase {
 /**
  * tearDown
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->View);
 		unset($this->Nodes);
 	}

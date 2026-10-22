@@ -72,7 +72,7 @@ class NodesControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->NodesController = $this->generate('Nodes.Nodes', array(
 			'methods' => array(
@@ -103,7 +103,7 @@ class NodesControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->NodesController);
 	}
@@ -283,7 +283,7 @@ class NodesControllerTest extends CroogoControllerTestCase {
  * @return void
  */
 	public function testAdminProcessWithInvalidAction() {
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		$this->testAction('/admin/nodes/nodes/process', array(
 			'data' => array(
 				'Node' => array(

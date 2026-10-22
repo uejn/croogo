@@ -12,7 +12,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		'plugin.taxonomy.type',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		$controller = null;
 		$this->View = new View($controller);
 		$this->Paginator = new CroogoPaginatorHelper($this->View);
@@ -20,7 +20,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		$this->Paginator->Html = new HtmlHelper($this->View);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->View, $this->Paginator);
 	}
 

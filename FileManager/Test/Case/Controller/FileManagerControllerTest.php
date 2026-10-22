@@ -40,7 +40,7 @@ class FileManagerControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->FileManager);
 	}

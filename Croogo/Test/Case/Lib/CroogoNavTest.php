@@ -8,13 +8,13 @@ class CroogoNavTest extends CroogoTestCase {
 
 	protected static $_menus = array();
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		self::$_menus = CroogoNav::items('sidebar');
 		CroogoNav::activeMenu('sidebar');
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		CroogoNav::clear(null);
 		CroogoNav::items('sidebar', self::$_menus);
@@ -56,9 +56,9 @@ class CroogoNavTest extends CroogoTestCase {
 	}
 
 /**
- * @expectedException UnexpectedValueException
  */
 	public function testNavClearWithException() {
+		$this->expectException('UnexpectedValueException');
 		CroogoNav::clear('bogus');
 	}
 

@@ -51,7 +51,7 @@ class UserTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->User = ClassRegistry::init('TestUser');
 		$this->User->Aro->useDbConfig = 'test';
@@ -62,7 +62,7 @@ class UserTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->User->request, $this->User);
 	}

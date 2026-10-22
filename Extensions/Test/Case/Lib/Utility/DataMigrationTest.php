@@ -18,11 +18,11 @@ class DataMigrationTest extends CroogoTestCase {
 		),
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		$this->DataMigration = new DataMigration();
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->DataMigration);
 	}
 

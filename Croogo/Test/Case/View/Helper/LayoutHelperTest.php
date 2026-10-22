@@ -27,7 +27,7 @@ class LayoutHelperTest extends CroogoTestCase {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->ComponentCollection = new ComponentCollection();
 
@@ -48,7 +48,7 @@ class LayoutHelperTest extends CroogoTestCase {
 /**
  * tearDown
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		Configure::write('App.encoding', $this->_appEncoding);
 		Configure::write('Asset', $this->_asset);
 		Configure::write('debug', $this->_debug);

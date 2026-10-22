@@ -34,7 +34,7 @@ class MenusComponentTest extends CroogoControllerTestCase {
 		'plugin.menus.link',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		$this->_paths = App::paths();
 		$app = CakePlugin::path('Menus') . 'Test' . DS . 'test_app' . DS;
 		App::build(array(
@@ -48,7 +48,7 @@ class MenusComponentTest extends CroogoControllerTestCase {
 		$this->generate('MenusTest');
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		App::paths($this->_paths);
 		unset($this->controller);
 	}

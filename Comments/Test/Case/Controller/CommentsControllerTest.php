@@ -38,7 +38,7 @@ class CommentsControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->_level = Configure::write('Comment.level');
 		$_SERVER['REMOTE_ADDR'] = '127.0.0.1';
@@ -63,7 +63,7 @@ class CommentsControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		Configure::write('Comment.level', $this->_level);
 		unset($this->CommentsController);

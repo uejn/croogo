@@ -16,7 +16,7 @@ class AclPermissionTest extends CroogoTestCase {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Permission = ClassRegistry::init('Acl.AclPermission');
 		$this->Permission->allow(

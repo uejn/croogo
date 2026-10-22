@@ -11,29 +11,29 @@ class CroogoThemeTest extends CroogoTestCase {
  */
 	public $CroogoTheme;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->CroogoTheme = $this->getMock('CroogoTheme', null);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->CroogoTheme);
 	}
 
 /**
  * testDeleteEmptyTheme
- * @expectedException InvalidArgumentException
  */
 	public function testDeleteEmptyTheme() {
+		$this->expectException('InvalidArgumentException');
 		$this->CroogoTheme->delete(null);
 	}
 
 /**
  * testDeleteBogusTheme
- * @expectedException UnexpectedValueException
  */
 	public function testDeleteBogusTheme() {
+		$this->expectException('UnexpectedValueException');
 		$this->CroogoTheme->delete('Bogus');
 	}
 

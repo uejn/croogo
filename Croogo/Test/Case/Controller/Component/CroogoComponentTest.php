@@ -33,7 +33,7 @@ class CroogoComponentTest extends CroogoTestCase {
 		'plugin.nodes.node',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->Controller = new CroogoTestController(new CakeRequest(), new CakeResponse());

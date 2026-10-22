@@ -16,12 +16,12 @@ App::uses('CroogoTestFixture', 'Croogo.TestSuite');
  */
 class CroogoControllerTestCase extends ControllerTestCase {
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass(): void {
 		self::_restoreSettings();
 		Configure::write('Config.language', 'eng');
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass(): void {
 		self::_restoreSettings();
 		Configure::write('Config.language', Configure::read('Site.locale'));
 	}
@@ -38,7 +38,7 @@ class CroogoControllerTestCase extends ControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$appDir = CakePlugin::path('Croogo') . 'Test' . DS . 'test_app' . DS;
@@ -70,7 +70,7 @@ class CroogoControllerTestCase extends ControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		if (CakeSession::started()) {
 			CakeSession::clear();

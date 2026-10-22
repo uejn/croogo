@@ -36,7 +36,7 @@ class ContactsControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->ContactsController = $this->generate('Contacts.Contacts', array(
 			'methods' => array(
@@ -60,7 +60,7 @@ class ContactsControllerTest extends CroogoControllerTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->ContactsController);
 	}

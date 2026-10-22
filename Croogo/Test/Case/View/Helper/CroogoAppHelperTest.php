@@ -27,7 +27,7 @@ class CroogoAppHelperTest extends CroogoTestCase {
 		'plugin.taxonomy.types_vocabulary',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		CakePlugin::load('Translate');
 		$this->View = new View(null);
@@ -35,7 +35,7 @@ class CroogoAppHelperTest extends CroogoTestCase {
 		$this->AppHelper->request = new CakeRequest(null, false);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		CakePlugin::unload('Translate');
 		unset($this->AppHelper->request, $this->AppHelper, $this->View);

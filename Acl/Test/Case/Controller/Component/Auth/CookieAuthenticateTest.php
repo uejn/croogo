@@ -37,7 +37,7 @@ class CookieAuthenticateTest extends CakeTestCase {
 /**
  * setup
  */
-	public function setUp() {
+	public function setUp(): void {
 		$this->skipIf(!function_exists('mcrypt_decrypt'), 'mcrypt not found');
 		$this->controller = $this->getMock('Controller', null);
 		$collection = $this->controller->Components;

@@ -26,7 +26,7 @@ class AclExtrasTest extends CroogoTestCase {
 		'ExtensionsThemesController',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		Configure::write('Acl.classname', 'DbAcl');
 		Configure::write('Acl.database', 'test');
 		$this->AclExtras = new AclExtras();
@@ -34,7 +34,7 @@ class AclExtrasTest extends CroogoTestCase {
 		$this->AclExtras->Aco->deleteAll('1 = 1');
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		$this->AclExtras->Aco->deleteAll('1 = 1');
 	}
 

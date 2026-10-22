@@ -13,13 +13,13 @@ class CroogoHtmlHelperTest extends CroogoTestCase {
 		'plugin.taxonomy.type',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		$controller = null;
 		$this->View = new View($controller);
 		$this->CroogoHtml = new CroogoHtmlHelper($this->View);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->View);
 		unset($this->CroogoHtml);
 	}

@@ -32,7 +32,7 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 		'plugin.nodes.node',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->generate('TestApp', array(
 			'components' => array(
@@ -46,7 +46,7 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 		));
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->controller);
 	}

@@ -21,7 +21,7 @@ class ExtensionsInstallerTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$path = CakePlugin::path('Extensions') . 'Test' . DS;
 		App::build(array(
@@ -40,7 +40,7 @@ class ExtensionsInstallerTest extends CroogoTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		$path = CakePlugin::path('Extensions') . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS . 'Example';
 		$Folder = new Folder($path);
@@ -112,9 +112,9 @@ class ExtensionsInstallerTest extends CroogoTestCase {
  * testGetPluginNameInvalid
  *
  * @return void
- * @expectedException CakeException
  */
 	public function testGetPluginNameInvalid() {
+		$this->expectException('CakeException');
 		$this->_createZip($this->invalidPlugin, 'Invalid');
 		$result = $this->ExtensionsInstaller->getPluginName($this->invalidPlugin);
 	}
@@ -165,9 +165,9 @@ class ExtensionsInstallerTest extends CroogoTestCase {
 /**
  * testComposerInstall
  *
- * @expectedException CakeException
  */
 	public function testComposerInstall() {
+		$this->expectException('CakeException');
 		$this->skipIf(version_compare(PHP_VERSION, '5.3.0', '<'), 'PHP >= 5.3.0 required to run this test.');
 
 		$ExtensionsInstaller = new ReflectionClass('ExtensionsInstaller');

@@ -13,7 +13,7 @@ class CommentableBehaviorTest extends CroogoTestCase {
 		'plugin.taxonomy.type',
 	);
 
-	public function setUp() {
+	public function setUp(): void {
 		$this->Comment = ClassRegistry::init('Comments.Comment');
 		$this->Comment->bindModel(array(
 			'belongsTo' => array(
@@ -30,7 +30,7 @@ class CommentableBehaviorTest extends CroogoTestCase {
 		$this->Comment->Node->Behaviors->load('Comments.Commentable');
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		ClassRegistry::flush();
 	}
 
@@ -58,9 +58,9 @@ class CommentableBehaviorTest extends CroogoTestCase {
 	}
 
 /**
- * @expectedException UnexpectedValueException
  */
 	public function testCommentableAddWithMissingId() {
+		$this->expectException('UnexpectedValueException');
 		unset($this->Comment->Node->id);
 		$this->Comment->Node->addComment(array());
 	}

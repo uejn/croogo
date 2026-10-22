@@ -29,7 +29,7 @@ class CroogoHelperTest extends CroogoTestCase {
 /**
  * setUp
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->ComponentCollection = new ComponentCollection();
 
@@ -63,7 +63,7 @@ class CroogoHelperTest extends CroogoTestCase {
 /**
  * tearDown
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		ClassRegistry::flush();
 		CroogoNav::items('sidebar', $this->menus);
 		unset($this->Croogo);
