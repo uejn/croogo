@@ -14,7 +14,7 @@
 	],
 	"require": {
 		"php": ">=8.2",
-		"cakephp/cakephp": "2.10.24.3",
+		"cakephp/cakephp": "2.10.24.5",
 		"cakedc/migrations": "2.6.0.1",
 		"croogo/croogo": "2.3.3"
 	},

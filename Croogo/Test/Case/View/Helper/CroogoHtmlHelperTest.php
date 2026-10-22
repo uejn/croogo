@@ -11,6 +11,8 @@ class CroogoHtmlHelperTest extends CroogoTestCase {
 
 	public $fixtures = array(
 		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
 	);
 
 	public function setUp(): void {

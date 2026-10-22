@@ -30,3 +30,8 @@ App::uses('CroogoControllerTestCase', 'Croogo.TestSuite');
 if (!CakePlugin::loaded('Translate')) {
 	CakePlugin::load('Translate');
 }
+
+// InstallTest necesita el plugin; sus rutas no (mandan todo a /install).
+if (!CakePlugin::loaded('Install')) {
+	CakePlugin::load('Install');
+}

@@ -113,7 +113,7 @@ class CroogoPluginTest extends CroogoTestCase {
 		sort($keys);
 
 		$this->assertEquals($expected, $keys);
-		$this->assertContains('test plugin with mixed', $data['description']);
+		$this->assertStringContainsString('test plugin with mixed', $data['description']);
 		$this->assertEquals('croogo-plugin', $data['type']);
 		$this->assertEquals('MixedManifest', $data['name']);
 	}

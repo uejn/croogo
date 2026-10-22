@@ -412,14 +412,14 @@ class NodesControllerTest extends CroogoControllerTestCase {
 		$this->Nodes->viewFallback(array('index_blog'));
 		$response = $this->Nodes->render();
 		$output = $response->body();
-		$this->assertContains('index_blog.ctp', $output);
-		$this->assertContains('Mytheme', $output);
+		$this->assertStringContainsString('index_blog.ctp', $output);
+		$this->assertStringContainsString('Mytheme', $output);
 
 		$this->Nodes->viewFallback(array('view_1', 'view_blog'));
 		$response = $this->Nodes->render();
 		$output = $response->body();
-		$this->assertContains('view_1.ctp', $output);
-		$this->assertContains('Mytheme', $output);
+		$this->assertStringContainsString('view_1.ctp', $output);
+		$this->assertStringContainsString('Mytheme', $output);
 	}
 
 /**
@@ -437,8 +437,8 @@ class NodesControllerTest extends CroogoControllerTestCase {
 		$this->Nodes->viewFallback(array('index_event'));
 		$response = $this->Nodes->render();
 		$output = $response->body();
-		$this->assertContains('index_event.ctp', $output);
-		$this->assertContains('TestPlugin', $output);
+		$this->assertStringContainsString('index_event.ctp', $output);
+		$this->assertStringContainsString('TestPlugin', $output);
 		unset($this->Nodes);
 	}
 
@@ -460,8 +460,8 @@ class NodesControllerTest extends CroogoControllerTestCase {
 		$this->Nodes->viewFallback(array('index_event'));
 		$response = $this->Nodes->render();
 		$output = $response->body();
-		$this->assertContains('index_event.ctp', $output);
-		$this->assertContains('TestPlugin', $output);
+		$this->assertStringContainsString('index_event.ctp', $output);
+		$this->assertStringContainsString('TestPlugin', $output);
 		unset($this->Nodes);
 	}
 
@@ -505,7 +505,7 @@ class NodesControllerTest extends CroogoControllerTestCase {
 		$this->Nodes->viewFallback(array('index_node'));
 		$response = $this->Nodes->render();
 		$output = $response->body();
-		$this->assertContains('index_node', $output);
+		$this->assertStringContainsString('index_node', $output);
 		unset($this->Nodes);
 	}
 

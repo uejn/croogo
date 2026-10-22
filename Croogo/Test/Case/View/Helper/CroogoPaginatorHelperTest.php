@@ -10,6 +10,8 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 
 	public $fixtures = array(
 		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
 	);
 
 	public function setUp(): void {
@@ -38,7 +40,7 @@ class CroogoPaginatorHelperTest extends CroogoTestCase {
 		));
 
 		$result = $this->Paginator->prev();
-		$this->assertContains('</li>', $result);
+		$this->assertStringContainsString('</li>', $result);
 	}
 
 	public function testNext() {

@@ -6,6 +6,10 @@ App::uses('CroogoTestCase', 'Croogo.TestSuite');
 
 class CroogoFormHelperTest extends CroogoTestCase {
 
+	public $fixtures = array(
+		'plugin.comments.comment',
+	);
+
 	public function setUp(): void {
 		$controller = null;
 		$this->View = new View($controller);

@@ -7,6 +7,10 @@ App::uses('Translations', 'Translate.Lib');
 class TranslateControllerTest extends CroogoControllerTestCase {
 
 	public $fixtures = array(
+		'plugin.blocks.block',
+		'plugin.blocks.region',
+		'plugin.menus.link',
+		'plugin.menus.menu',
 		'plugin.users.aro',
 		'plugin.users.aco',
 		'plugin.users.aros_aco',

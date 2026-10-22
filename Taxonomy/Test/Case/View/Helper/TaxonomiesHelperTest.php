@@ -47,8 +47,8 @@ class TaxonomiesHelperTest extends CroogoTestCase {
 			'threaded' => array(),
 		);
 		Croogo::dispatchEvent('Helper.Layout.beforeFilter', $this->View, array('content' => &$content));
-		$this->assertContains('vocabulary-1', $content);
-		$this->assertContains('class="vocabulary"', $content);
+		$this->assertStringContainsString('vocabulary-1', $content);
+		$this->assertStringContainsString('class="vocabulary"', $content);
 	}
 
 }

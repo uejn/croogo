@@ -25,6 +25,8 @@ class CroogoHelperTest extends CroogoTestCase {
 		'plugin.settings.setting',
 		'plugin.users.role',
 		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
 	);
 
 /**
@@ -211,7 +213,7 @@ class CroogoHelperTest extends CroogoTestCase {
 
 		$result = $this->Croogo->adminTabs(true);
 		$this->assertStringContainsString($testData, $result);
-		$this->assertContains('test-title', $result);
+		$this->assertStringContainsString('test-title', $result);
 	}
 
 	public function testAdminBoxes() {
@@ -373,7 +375,7 @@ class CroogoHelperTest extends CroogoTestCase {
 		$result = $this->Croogo->adminRowAction('<span>Del</span>', $url, array(), $sure);
 		$this->assertTags($result, $expected);
 		$quot = '&quot;';
-		$this->assertContains($quot . $sure . $quot, $result);
+		$this->assertStringContainsString($quot . $sure . $quot, $result);
 	}
 
 /**

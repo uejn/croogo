@@ -12,6 +12,18 @@ class TheNodesTestController extends Controller {
 
 class NodesHelperTest extends CroogoTestCase {
 
+	public $fixtures = array(
+		'plugin.nodes.node',
+		'plugin.meta.meta',
+		'plugin.taxonomy.model_taxonomy',
+		'plugin.taxonomy.taxonomy',
+		'plugin.taxonomy.term',
+		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
+		'plugin.users.user',
+	);
+
 /**
  * setUp
  */
@@ -49,8 +61,8 @@ class NodesHelperTest extends CroogoTestCase {
 			),
 		);
 		Croogo::dispatchEvent('Helper.Layout.beforeFilter', $this->View, array('content' => &$content));
-		$this->assertContains('node-list-recent_posts', $content);
-		$this->assertContains('class="node-list"', $content);
+		$this->assertStringContainsString('node-list-recent_posts', $content);
+		$this->assertStringContainsString('class="node-list"', $content);
 	}
 
 /**
