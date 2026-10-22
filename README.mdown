@@ -4,7 +4,7 @@ Fork de [croogo/croogo](https://github.com/croogo/croogo) en la tag `2.3.3`, la 
 2, que no se mantiene más. Lo usa [AfiGestión](https://github.com/uejn/afigestion) para salir de
 PHP 7.1 (uejn/afigestion#428, uejn/afigestion#430).
 
-- **Exige PHP 8.** Corre sobre [`uejn/cakephp`](https://github.com/uejn/cakephp) (CakePHP 2 para
+- **Exige PHP 8** (el CI corre en 8.2 y 8.5). Corre sobre [`uejn/cakephp`](https://github.com/uejn/cakephp) (CakePHP 2 para
   PHP 8) y [`uejn/migrations`](https://github.com/uejn/migrations).
 - El paquete se sigue llamando `croogo/croogo`. Los tags son `2.3.3.N`.
 - La rama es `2.x`; `master` es la de upstream (Croogo 4/5) y no se toca.
@@ -19,8 +19,8 @@ En el `composer.json` de AfiGestión:
 		{ "type": "vcs", "url": "https://github.com/uejn/migrations" }
 	],
 	"require": {
-		"cakephp/cakephp": "2.10.24.3",
-		"croogo/croogo": "2.3.3.1",
+		"cakephp/cakephp": "2.10.25.0",
+		"croogo/croogo": "2.3.3.2",
 		"cakedc/migrations": "2.6.0.1"
 	}
 }
@@ -42,6 +42,14 @@ base (`.github/ci/tests.baseline`): el CI falla si algo queda peor que ahí.
 La base se elige con `CROOGO_DB` y `CROOGO_DB_HOST`.
 
 ## Cambios de la UEJN
+
+### 2.3.3.2 (22/10/2026, PHP 8.5)
+
+- CI en PHP 8.2 y 8.5, con `uejn/cakephp` 2.10.25.0.
+- lessphp (el del instalador) leía caracteres con `$str{0}`, que no parsea desde PHP 8, y tenía un
+  `case` terminado en `;` (deprecado en 8.5).
+- `VisibilityFilter::__construct(?CakeRequest $request = null)`: el nullable implícito está
+  deprecado desde 8.4. `(integer)` pasa a `(int)` en un test.
 
 ### 2.3.3.1 (22/10/2026)
 
