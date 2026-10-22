@@ -2,7 +2,7 @@
 
 App::uses('CakePlugin', 'Core');
 
-class AssetGenerator extends Object {
+class AssetGenerator extends CakeObject {
 
 	protected $_croogoPath;
 

@@ -5,7 +5,7 @@
  *
  * @package Croogo.Acl.Lib
  */
-class AclUpgrade extends Object {
+class AclUpgrade extends CakeObject {
 
 /**
  * Map of new ACO hierarchy.

@@ -1,6 +1,6 @@
 <?php
 
-class ShopsEventHandler extends Object implements CakeEventListener {
+class ShopsEventHandler extends CakeObject implements CakeEventListener {
 
 	public function implementedEvents() {
 		return array(
