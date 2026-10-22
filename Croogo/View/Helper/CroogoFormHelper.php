@@ -391,7 +391,7 @@ class CroogoFormHelper extends FormHelper {
 			'default' => $default,
 			'autocomplete' => 'off',
 		));
-		$out .= $this->input("autocomplete_${field}", $autocomplete);
+		$out .= $this->input("autocomplete_{$field}", $autocomplete);
 
 		return $out;
 	}
