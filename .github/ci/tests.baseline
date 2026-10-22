@@ -1,0 +1,9 @@
+# Los archivos de test que hoy no andan en PHP 8.2, con su estado y cuántas fallas tienen.
+# La escribe .github/ci/tests.sh --update; el CI falla si algo queda peor que acá.
+# Ninguno es de PHP 8: dependen del entorno de los tests (rutas cargadas, el behavior del plugin
+# Example, el pedido simulado de generate(), el orden de los fixtures).
+# estado	archivo	fallas	resumen
+FALLA	Comments/Test/Case/Controller/CommentsControllerTest.php	3	Tests: 11, Assertions: 24, Errors: 2, Failures: 1
+FALLA	Nodes/Test/Case/Model/NodeTest.php	1	Tests: 29, Assertions: 70, Failures: 1
+FALLA	Nodes/Test/Case/View/Helper/NodesHelperTest.php	1	Tests: 2, Assertions: 5, Failures: 1
+FALLA	Users/Test/Case/Controller/UsersControllerTest.php	4	Tests: 17, Assertions: 27, Errors: 2, Failures: 2

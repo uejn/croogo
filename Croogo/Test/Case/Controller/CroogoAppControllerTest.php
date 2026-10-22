@@ -29,6 +29,8 @@ class CroogoAppControllerTest extends CroogoControllerTestCase {
 	public $fixtures = array(
 		'plugin.settings.setting',
 		'plugin.taxonomy.type',
+		'plugin.taxonomy.types_vocabulary',
+		'plugin.taxonomy.vocabulary',
 		'plugin.nodes.node',
 	);
 

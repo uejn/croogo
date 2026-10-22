@@ -101,7 +101,7 @@ class UserTest extends CroogoTestCase {
 		$newUser['User']['password'] = '';
 		$this->User->id = $newUser['User']['id'];
 		$this->User->save($newUser);
-		$this->assertContains('Passwords must be at least 6 characters long.', print_r($this->User->validationErrors, true));
+		$this->assertStringContainsString('Passwords must be at least 6 characters long.', print_r($this->User->validationErrors, true));
 		$newUser = $this->User->read();
 		$this->assertEqual($newUser['User']['password'], $oldPassword);
 	}
@@ -115,7 +115,7 @@ class UserTest extends CroogoTestCase {
 		$this->User->data['User'] = array('password' => '123456');
 		$this->assertTrue($this->User->validIdentical(array('verify_password' => '123456')));
 		$this->User->data['User'] = array('password' => '123456');
-		$this->assertContains('Passwords do not match. Please, try again.', $this->User->validIdentical(array('verify_password' => 'other-value')));
+		$this->assertStringContainsString('Passwords do not match. Please, try again.', $this->User->validIdentical(array('verify_password' => 'other-value')));
 	}
 
 /**

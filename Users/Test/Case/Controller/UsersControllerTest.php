@@ -143,7 +143,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
 			),
 		));
 		$errors = print_r($this->UsersController->User->validationErrors, true);
-		$this->assertContains('at least 6 characters', $errors);
+		$this->assertStringContainsString('at least 6 characters', $errors);
 	}
 
 /**
@@ -176,7 +176,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
 			),
 		));
 		$errors = print_r($this->UsersController->User->validationErrors, true);
-		$this->assertContains('do not match', $errors);
+		$this->assertStringContainsString('do not match', $errors);
 		$this->assertContains('valid email', $errors);
 		$this->assertContains('been taken', $errors);
 	}
@@ -263,7 +263,7 @@ class UsersControllerTest extends CroogoControllerTestCase {
 			),
 			'return' => 'view',
 		));
-		$this->assertContains('Passwords must be at least 6 characters long.', $result);
+		$this->assertStringContainsString('Passwords must be at least 6 characters long.', $result);
 	}
 
 /**

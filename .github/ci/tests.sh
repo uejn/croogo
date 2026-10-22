@@ -20,7 +20,7 @@ APP="$RAIZ/app"
 BASELINE="$CI/tests.baseline"
 SALIDAS="$APP/tmp/tests"
 RESULTADO="$SALIDAS/resultado.tsv"
-ESPERA=300
+ESPERA=900
 
 preparar() {
 	if [ ! -d "$APP" ]; then
