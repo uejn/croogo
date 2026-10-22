@@ -34,7 +34,7 @@ class VisibilityFilter {
  *
  * @param CakeRequest $request
  */
-	public function __construct(CakeRequest $request = null) {
+	public function __construct(?CakeRequest $request = null) {
 		if ($request) {
 			$this->_request = $request;
 		} else {
