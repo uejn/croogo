@@ -63,16 +63,13 @@ class UsersControllerTest extends CroogoControllerTestCase {
 		);
 
 		$this->controller->Auth
-			->staticExpects($this->any())
+			->expects($this->any())
 			->method('identify')
 			->will($this->returnCallback(array($this, 'authIdentifyFalse')));
 	}
 
 	protected function _setupAuthUser() {
-		$this->controller->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 	public function authIdentifyFalse() {

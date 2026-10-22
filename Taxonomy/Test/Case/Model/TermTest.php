@@ -95,7 +95,7 @@ class TermTest extends CroogoTestCase {
 	}
 
 	public function testFindByVocabularyWithNoVocabularyIdShouldTriggerError() {
-		$this->expectException('PHPUnit_Framework_error');
+		$this->expectException('PHPUnit\Framework\Error\Error');
 		$this->Term->find('byVocabulary');
 	}
 

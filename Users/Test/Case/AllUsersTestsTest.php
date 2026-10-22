@@ -1,6 +1,6 @@
 <?php
 
-class AllUsersTestsTest extends PHPUnit_Framework_TestSuite {
+class AllUsersTestsTest extends PHPUnit\Framework\TestSuite {
 
 	public static function suite() {
 		$suite = new CakeTestSuite('All Users plugin tests');

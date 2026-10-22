@@ -46,10 +46,7 @@ class LanguagesControllerTest extends CroogoControllerTestCase {
 				'Session',
 			),
 		));
-		$this->LanguagesController->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 /**

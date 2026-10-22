@@ -43,10 +43,7 @@ class AclActionsControllerTest extends CroogoControllerTestCase {
 				'Taxonomy.Taxonomies',
 			),
 		));
-		$AclActions->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnValue(array('id' => 2, 'role_id' => 1)));
+		CakeSession::write('Auth.User', array('id' => 2, 'role_id' => 1));
 		$AclActions->Session
 			->expects($this->any())
 			->method('setFlash')

@@ -49,10 +49,7 @@ class ContactsControllerTest extends CroogoControllerTestCase {
 			),
 		));
 		$this->controller->plugin = 'Contacts';
-		$this->controller->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 /**

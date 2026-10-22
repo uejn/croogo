@@ -1,7 +1,7 @@
 <?php
 App::uses('CroogoTestCase', 'Croogo.TestSuite');
 
-class CroogoLibsTest extends PHPUnit_Framework_TestSuite {
+class CroogoLibsTest extends PHPUnit\Framework\TestSuite {
 
 	public static function suite() {
 		$suite = new CakeTestSuite('Croogo lib tests');

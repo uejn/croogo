@@ -5,7 +5,7 @@ App::uses('CroogoTestCase', 'Croogo.TestSuite');
  *  CroogoCorePluginsTest
  *
  */
-class CroogoCorePluginsTest extends PHPUnit_Framework_TestSuite {
+class CroogoCorePluginsTest extends PHPUnit\Framework\TestSuite {
 
 	public static function suite() {
 		$suite = new CakeTestSuite('Croogo core plugins tests');

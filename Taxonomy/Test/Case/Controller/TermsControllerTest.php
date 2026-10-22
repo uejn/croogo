@@ -50,10 +50,7 @@ class TermsControllerTest extends CroogoControllerTestCase {
 				'Menus.Menus',
 			),
 		));
-		$this->TermsController->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 /**

@@ -87,12 +87,9 @@ class NodesControllerTest extends CroogoControllerTestCase {
 		));
 
 		$this->NodesController->Node->Behaviors->detach('Acl');
-		$this->NodesController->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 		$this->NodesController->Session
-			->staticExpects($this->any())
+			->expects($this->any())
 			->method('read')
 			->will($this->returnValue(array('id' => 1, 'role_id' => 1)));
 		$this->NodesController->Security->Session = $this->getMock('CakeSession');

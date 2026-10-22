@@ -52,10 +52,7 @@ class CommentsControllerTest extends CroogoControllerTestCase {
 				'Session',
 			),
 		));
-		$this->CommentsController->Auth
-			->staticExpects($this->any())
-			->method('user')
-			->will($this->returnCallback(array($this, 'authUserCallback')));
+		CakeSession::write('Auth.User', $this->authUserCallback(null));
 	}
 
 /**

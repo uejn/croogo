@@ -1,7 +1,7 @@
 <?php
 App::uses('CroogoTestCase', 'Croogo.TestSuite');
 
-class AllTaxonomyTestsTest extends PHPUnit_Framework_TestSuite {
+class AllTaxonomyTestsTest extends PHPUnit\Framework\TestSuite {
 
 /**
  * suite
