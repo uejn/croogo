@@ -65,9 +65,7 @@ class FileManagerController extends FileManagerAppController {
  * @deprecated Use FileManager::isEditable()
  */
 	protected function _isEditable($path) {
-		$path = realpath($path);
-		$regex = '/^' . preg_quote(realpath(APP), '/') . '/';
-		return preg_match($regex, $path) > 0;
+		return $this->FileManager->isWithinPath(APP, $path);
 	}
 
 /**
@@ -80,13 +78,12 @@ class FileManagerController extends FileManagerAppController {
  * @deprecated Use FileManager::isDeletable()
  */
 	protected function _isDeletable($path) {
-		$path = realpath($path);
-		$regex = array();
-		for ($i = 0, $ii = count($this->deletablePaths); $i < $ii; $i++) {
-			$regex[] = '(^' . preg_quote(realpath($this->deletablePaths[$i]), '/') . ')';
+		foreach ($this->deletablePaths as $deletablePath) {
+			if ($this->FileManager->isWithinPath($deletablePath, $path)) {
+				return true;
+			}
 		}
-		$regex = '/' . join($regex, '|') . '/';
-		return preg_match($regex, $path) > 0;
+		return false;
 	}
 
 /**

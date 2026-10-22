@@ -1,6 +1,7 @@
 <?php
 App::uses('FileManager', 'FileManager.Model');
 App::uses('CroogoTestCase', 'Croogo.TestSuite');
+App::uses('Folder', 'Utility');
 
 class FileManagerTest extends CroogoTestCase {
 
@@ -40,6 +41,84 @@ class FileManagerTest extends CroogoTestCase {
 		$this->assertFalse($isEditable);
 	}
 
+
+/**
+ * Arma base/, base-hermana/ y afuera/ en un directorio temporal, con un archivo en cada una.
+ *
+ * @return string El directorio temporal, con separador al final
+ */
+	protected function _carpetasDePrueba() {
+		$raiz = sys_get_temp_dir() . DS . 'croogo_fm_' . uniqid() . DS;
+		foreach (array('base', 'base-hermana', 'afuera') as $carpeta) {
+			mkdir($raiz . $carpeta, 0777, true);
+			touch($raiz . $carpeta . DS . 'archivo.php');
+		}
+		$this->_carpetas = $raiz;
+		return $raiz;
+	}
+
+	protected $_carpetas = null;
+
+	protected function _borrarCarpetasDePrueba() {
+		if ($this->_carpetas) {
+			$Folder = new Folder($this->_carpetas);
+			$Folder->delete();
+			$this->_carpetas = null;
+		}
+	}
+
+/**
+ * CVE-2026-16219: el chequeo comparaba sólo el prefijo, y base-hermana/ pasaba por base/.
+ *
+ * @group isEditable
+ */
+	public function testIsEditableNoAceptaUnaCarpetaHermanaConElMismoPrefijo() {
+		$raiz = $this->_carpetasDePrueba();
+		Configure::write('FileManager.editablePaths', array($raiz . 'base'));
+		Configure::write('FileManager.deletablePaths', array($raiz . 'base'));
+		try {
+			$this->assertTrue($this->FileManager->isEditable($raiz . 'base' . DS . 'archivo.php'));
+			$this->assertTrue($this->FileManager->isEditable($raiz . 'base'));
+			$this->assertFalse($this->FileManager->isEditable($raiz . 'base-hermana' . DS . 'archivo.php'));
+			$this->assertFalse($this->FileManager->isEditable($raiz . 'base' . DS . '..' . DS . 'afuera' . DS . 'archivo.php'));
+			$this->assertFalse($this->FileManager->isDeletable($raiz . 'base-hermana' . DS . 'archivo.php'));
+			$this->assertFalse($this->FileManager->isDeletable($raiz . 'base' . DS . '..' . DS . 'afuera' . DS . 'archivo.php'));
+		} finally {
+			$this->_borrarCarpetasDePrueba();
+		}
+	}
+
+/**
+ * Si la carpeta permitida no existe, realpath() da false y la regex quedaba en /^/: todo pasaba.
+ *
+ * @group isEditable
+ */
+	public function testUnaCarpetaPermitidaQueNoExisteNoPermiteNada() {
+		$raiz = $this->_carpetasDePrueba();
+		Configure::write('FileManager.editablePaths', array($raiz . 'no-existe'));
+		Configure::write('FileManager.deletablePaths', array($raiz . 'no-existe'));
+		try {
+			$this->assertFalse($this->FileManager->isEditable($raiz . 'afuera' . DS . 'archivo.php'));
+			$this->assertFalse($this->FileManager->isDeletable($raiz . 'afuera' . DS . 'archivo.php'));
+		} finally {
+			$this->_borrarCarpetasDePrueba();
+		}
+	}
+
+/**
+ * Un archivo que no existe no está adentro de nada (realpath() da false).
+ *
+ * @group isEditable
+ */
+	public function testUnArchivoQueNoExisteNoEsEditable() {
+		$raiz = $this->_carpetasDePrueba();
+		Configure::write('FileManager.editablePaths', array($raiz . 'base'));
+		try {
+			$this->assertFalse($this->FileManager->isEditable($raiz . 'base' . DS . 'no-existe.php'));
+		} finally {
+			$this->_borrarCarpetasDePrueba();
+		}
+	}
 
 /**
  * @group rename
