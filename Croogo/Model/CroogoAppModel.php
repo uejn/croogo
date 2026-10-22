@@ -252,7 +252,7 @@ class CroogoAppModel extends Model {
  * @return bool true when validation successful
  */
 	public function validAlias($check) {
-		return (preg_match('/^[\p{Ll}\p{Lm}\p{Lo}\p{Lt}\p{Lu}\p{Nd}-_]+$/mu', $check[key($check)]) == 1);
+		return (preg_match('/^[\p{Ll}\p{Lm}\p{Lo}\p{Lt}\p{Lu}\p{Nd}\-_]+$/mu', $check[key($check)]) == 1);
 	}
 
 /**
@@ -261,7 +261,7 @@ class CroogoAppModel extends Model {
  * @return bool true when validation successful
  */
 	public function validName($check) {
-		return (preg_match('/^[\p{Ll}\p{Lm}\p{Lo}\p{Lt}\p{Lu}\p{Nd}-_\[\]\(\) ]+$/mu', $check[key($check)]) == 1);
+		return (preg_match('/^[\p{Ll}\p{Lm}\p{Lo}\p{Lt}\p{Lu}\p{Nd}\-_\[\]\(\) ]+$/mu', $check[key($check)]) == 1);
 	}
 
 }
