@@ -1,4 +1,5 @@
 <?php
+App::uses('CroogoTheme', 'Extensions.Lib');
 App::uses('CroogoHelper', 'Croogo.View/Helper');
 App::uses('SessionComponent', 'Controller/Component');
 App::uses('AuthComponent', 'Controller/Component');
